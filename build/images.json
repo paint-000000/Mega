@@ -1,0 +1,716 @@
+{
+ "acervo/036-pedra-folheta-1": {
+  "base": "assets/img/acervo/036-pedra-folheta-1",
+  "w": 633,
+  "h": 787,
+  "widths": [
+   420,
+   633
+  ],
+  "social": {
+   "w": 633,
+   "h": 787
+  },
+  "lqip": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAAAQBACdASoQABQAPuleqE0pJSOiMAgBIB0JZgCdMoACj6r16Su1zvIoIAD9+eeXQ8jusaPkNTQFX0toEWaLgs1IQNDKqrq4QzLGdx9b4T0aCLKhuS1/WBWQZuGpLRKQc1kZEo9hUqI+LHwFe4/15xqPDGFMAAAA",
+  "source": "CALÇAMENTOS E ESCADAS/036_Pedra_Folheta_1.jpeg"
+ },
+ "acervo/039-paralelepipedo-1": {
+  "base": "assets/img/acervo/039-paralelepipedo-1",
+  "w": 633,
+  "h": 787,
+  "widths": [
+   420,
+   633
+  ],
+  "social": {
+   "w": 633,
+   "h": 787
+  },
+  "lqip": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACQAwCdASoQABQAPuleqE0pJSOiMAgBIB0JYwCo9CHwV5oUf1QAAP5mR4apFTv5+EdYgXLPiv8bf+Dt+hjc85uPOXeyi4janSTskhR7X6sSf4SOsvXlelD/f5Q1zx76Gx/0FCfimo/3phAA",
+  "source": "CALÇAMENTOS E ESCADAS/039_Paralelepípedo_1.jpeg"
+ },
+ "acervo/041-paralelepipedo-10x10-1": {
+  "base": "assets/img/acervo/041-paralelepipedo-10x10-1",
+  "w": 630,
+  "h": 790,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 790
+  },
+  "lqip": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAABQBACdASoQABQAPuleqE0pJSOiMAgBIB0JYgB3AARc9WPfOy8rRZ6LzroAAP60Lcov68wGYKM7OAXUiJnNs6+7WqWd3nHc+CPBOLMm2J8NrOn8UGlLZsqccia0f7z6pWlRZ3Z7LZdTjI377Axfgg7wfUCGKwAA",
+  "source": "CALÇAMENTOS E ESCADAS/041_Paralelepípedo_10x10_1.jpeg"
+ },
+ "acervo/053-pedra-sao-tome-lajao-caminhos-e-pracas-1": {
+  "base": "assets/img/acervo/053-pedra-sao-tome-lajao-caminhos-e-pracas-1",
+  "w": 633,
+  "h": 791,
+  "widths": [
+   420,
+   633
+  ],
+  "social": {
+   "w": 633,
+   "h": 791
+  },
+  "lqip": "data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAAAQBACdASoQABQAPulep00pJSOiMAgBIB0JQBdkBLhWgyWU0PBc7KiNMAD8UjQSs6OZK1rj7f7UBZEYiuIcWkoUTKrMK2LlsQJ9Tp7wl9HsCcNn1SOf1LC8t6t2LqPCx2AfeqLz6hkF799hY4wX+mkJUxE5tAzlB08jgMxl/oAAAA==",
+  "source": "CAMINHOS/053_Pedra_São_Tomé_Lajão_Caminhos_e_Praças_1.jpeg"
+ },
+ "acervo/055-pedra-vermelha-do-sul-lajao-caminhos-e-pracas-1": {
+  "base": "assets/img/acervo/055-pedra-vermelha-do-sul-lajao-caminhos-e-pracas-1",
+  "w": 633,
+  "h": 789,
+  "widths": [
+   420,
+   633
+  ],
+  "social": {
+   "w": 633,
+   "h": 789
+  },
+  "lqip": "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAACwAwCdASoQABQAPulep00pJSOiMAgBIB0JbACdABl6M7gFea/8AAD+ZZz6Rlx9qZBlEz+Ae+p9GhZ9RDnnMQ7CGABpH8dyww90/RbuTb32Cw+w9qU/yov6pzTsrnqhHCton7UkwaLRjmEtHr4H/ECVUr5kyKj9Ozt+2Yk0HgTfM798iV6AAAAA",
+  "source": "CAMINHOS/055_Pedra_Vermelha_do_Sul_Lajão_Caminhos_e_Praças_1.jpeg"
+ },
+ "acervo/057-pedra-goias-lajao-1": {
+  "base": "assets/img/acervo/057-pedra-goias-lajao-1",
+  "w": 630,
+  "h": 790,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 790
+  },
+  "lqip": "data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAAAwBACdASoQABQAPulep00pJSOiMAgBIB0JaACdBagBoEvnzzdPNyAFmhwAy0LMCVia8zsoncHkkMFMM/x1ARXt3r9vH7pDOd1nrjIFZnRvTUGgHaUrWKcLlnlJ+dJYtV1HmZVBzYc49FUKPefLZz9Dlshk7bn1IqrtyNzgaP3mfOeKAAA=",
+  "source": "CAMINHOS/057_Pedra_Goiás_Lajão_1.jpeg"
+ },
+ "acervo/060-pedra-granito-escadas-1": {
+  "base": "assets/img/acervo/060-pedra-granito-escadas-1",
+  "w": 633,
+  "h": 787,
+  "widths": [
+   420,
+   633
+  ],
+  "social": {
+   "w": 633,
+   "h": 787
+  },
+  "lqip": "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAABQBACdASoQABQAPulep00pJSOiMAgBIB0JYgCdMoGv/gPITlnSzkH4eQ7AAP7s5TrIhMxanbg4i525XVF9Gc4UQiObfDniSxFRAvdSwi0g/E7MuaVH5haSn6pKFQop/9ikuH2ZWOwQ8TEaY+RnLLyMhT3+1OKarO5jQ7vMhMQX2UB32fyDAAAA",
+  "source": "ESCADAS/060_Pedra_Granito_Escadas_1.jpeg"
+ },
+ "acervo/062-pedra-granito-rustico-escadas-1": {
+  "base": "assets/img/acervo/062-pedra-granito-rustico-escadas-1",
+  "w": 632,
+  "h": 791,
+  "widths": [
+   420,
+   632
+  ],
+  "social": {
+   "w": 632,
+   "h": 791
+  },
+  "lqip": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAADwAwCdASoQABQAPuleqE0pJSOiMAgBIB0JaAAAXlAeYV67/Pfw8xwAAP40DC251f49OgEUMv7xEyQ9StPQsGGmUpx2vkqcni6i72Fan7p8eMSYbAqgRQ5/eeYCudFU1Dha26YzqmfEmz+0o2DEtTMRGNXcwCAA",
+  "source": "ESCADAS/062_Pedra_Granito_Rústico_Escadas_1.jpeg"
+ },
+ "acervo/064-pedra-moledo-escadas-1": {
+  "base": "assets/img/acervo/064-pedra-moledo-escadas-1",
+  "w": 633,
+  "h": 787,
+  "widths": [
+   420,
+   633
+  ],
+  "social": {
+   "w": 633,
+   "h": 787
+  },
+  "lqip": "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAAAQBACdASoQABQAPuleqE0pJSOiMAgBIB0JbACdMoMrZDgM8m6T3YtyAAD9ofwDqrOvZUI8e583b/vtg2zb20DdrXku5wAWD/VpdUXZ3lN3uIVUZbiueSq7JpLOSIGrrgh1n4d58lBpYGZFDy6yr3PnLMubKVyVS9e9qSEVtNjV/qNtDueJc7QA",
+  "source": "ESCADAS/064_Pedra_Moledo_Escadas_1.jpeg"
+ },
+ "acervo/066-pedra-sao-tome-escadas-1": {
+  "base": "assets/img/acervo/066-pedra-sao-tome-escadas-1",
+  "w": 632,
+  "h": 787,
+  "widths": [
+   420,
+   632
+  ],
+  "social": {
+   "w": 632,
+   "h": 787
+  },
+  "lqip": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADQAwCdASoQABQAPulep00pJSOiMAgBIB0JYgCdAB8/VO5I8DgI+9gA/qV9m2zSnVl2J/Nf3DH2XFZVS6h8HLSNvKYkOOBLqcFu6bJ7RdnfqWlnkGcrweHxRjiX4SBO7L6FNkeJzxGAAA==",
+  "source": "ESCADAS/066_Pedra_São_Tomé_Escadas_1.jpeg"
+ },
+ "acervo/067-pedra-sao-tome-lajao-escadas-1": {
+  "base": "assets/img/acervo/067-pedra-sao-tome-lajao-escadas-1",
+  "w": 633,
+  "h": 789,
+  "widths": [
+   420,
+   633
+  ],
+  "social": {
+   "w": 633,
+   "h": 789
+  },
+  "lqip": "data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAADwAwCdASoQABQAPuleqE0pJSOiMAgBIB0JYwC7AB6VVSejjhNWq5oAAP7k6nUZJ18tFyDXaaGCMIjAZO73cTkd2vZvaRfKTgF7QpgFaFSz36hc/f9Hdbty9VOTfYBqvbDvu9qMHr1zHk+v+w8FHMi6hmSdbEC+NaAIPQMVwMCgAA==",
+  "source": "ESCADAS/067_Pedra_São_Tomé_Lajão_Escadas_1.jpeg"
+ },
+ "acervo/069-pedra-vermelha-do-sul-lajao-escadas-1": {
+  "base": "assets/img/acervo/069-pedra-vermelha-do-sul-lajao-escadas-1",
+  "w": 631,
+  "h": 789,
+  "widths": [
+   420,
+   631
+  ],
+  "social": {
+   "w": 631,
+   "h": 789
+  },
+  "lqip": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAACQAwCdASoQABQAPuleqE0pJSOiMAgBIB0JaACdABqe3/92dpUAAMtL4F+MpxbgZEPlmE+pcwRC553b0/JbUgIjkohM83Okt3XqTAGaLeczcLK2LYRGyQgHt8ZT3un54ys9vY2+G7IAyMXPhJ9WnywlDVpGGS8zWHRSPuhYAAA=",
+  "source": "ESCADAS/069_Pedra_Vermelha_do_Sul_Lajão_Escadas_1.jpeg"
+ },
+ "acervo/071-pedra-madeira-muros-e-muretas-1": {
+  "base": "assets/img/acervo/071-pedra-madeira-muros-e-muretas-1",
+  "w": 633,
+  "h": 787,
+  "widths": [
+   420,
+   633
+  ],
+  "social": {
+   "w": 633,
+   "h": 787
+  },
+  "lqip": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAABwAwCdASoQABQAPulep00pJSOiMAgBIB0JaDuAGMeQABttQAAA/qbElskNvy+YmWVlK2KurUWB0DfOGcVqZQ27w65cJS66bG6bfHZhJzVRnV6uOFUVN+mFf169LsteBoMcHMXvHNLCL62y+AA=",
+  "source": "MUROS E MURETAS/071_Pedra_Madeira_Muros_e_Muretas_1.jpeg"
+ },
+ "acervo/073-pedra-moledo-muros-e-muretas-1": {
+  "base": "assets/img/acervo/073-pedra-moledo-muros-e-muretas-1",
+  "w": 633,
+  "h": 787,
+  "widths": [
+   420,
+   633
+  ],
+  "social": {
+   "w": 633,
+   "h": 787
+  },
+  "lqip": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAAAQBACdASoQABQAPulep00pJSOiMAgBIB0JQBOmUABEldpqFgz+pDEjdAD+l5wm9J8ue27OHaZx8MCFNjo24K7/SiL3cqg4ErbHeLitzqO0KIRZMvFAqf4XGKxgHJ+pX5KI7/0aqKXS0LimP+xNkG0kZP+F08YA",
+  "source": "MUROS E MURETAS/073_Pedra_Moledo_Muros_e_Muretas_1.jpeg"
+ },
+ "acervo/075-pedra-rachao-cortada-1": {
+  "base": "assets/img/acervo/075-pedra-rachao-cortada-1",
+  "w": 630,
+  "h": 790,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 790
+  },
+  "lqip": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAADwAwCdASoQABQAPulgqE0pJaOiMAgBIB0JYgCdACPnk+7TJ7b0C0wAAP7U8hpazQXGBRA79cAjdYkLv5FX3hK72ClR2RHRrXAKM9+2Mz71gaGT85VW/owpOgAAAA==",
+  "source": "MUROS E MURETAS/075_Pedra_Rachão_Cortada_1.jpeg"
+ },
+ "acervo/078-pedra-rachao-natural-1": {
+  "base": "assets/img/acervo/078-pedra-rachao-natural-1",
+  "w": 633,
+  "h": 790,
+  "widths": [
+   420,
+   633
+  ],
+  "social": {
+   "w": 633,
+   "h": 790
+  },
+  "lqip": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAAAwBACdASoQABQAPulep00pJSOiMAgBIB0JYgC1GoACtUxIYYRufHBKdUgA9rl5FGErukgmIiLjhTjzy5F+PKbMs34WhXpOkqdbkpsNpZ/yTGhDObMVtE3T6sMdAnK02VHLvpzCu3wmfYWzphryHfnLvWIoAA==",
+  "source": "MUROS E MURETAS/078_Pedra_Rachão_Natural_1.jpeg"
+ },
+ "acervo/044-pedra-basalto-lajao-1": {
+  "base": "assets/img/acervo/044-pedra-basalto-lajao-1",
+  "w": 630,
+  "h": 788,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 788
+  },
+  "lqip": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADwAwCdASoQABQAPulgqE0pJaOiMAgBIB0JQBdgAy/pxcE0dQ42Em5wAP1MmkAjmZRO/xbrZNsaK0C077j0vsbhmbAUHVjUK0pAwn9PYg0ayQooY7/9gTbmJkGZPbAvgByggxPouin90EeGY+61Tq0wrC37qCcn8AA=",
+  "source": "PISOS/044_Pedra_Basalto_Lajão_1.jpeg"
+ },
+ "acervo/045-pedra-granito-mosaico-piso-1": {
+  "base": "assets/img/acervo/045-pedra-granito-mosaico-piso-1",
+  "w": 630,
+  "h": 790,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 790
+  },
+  "lqip": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAAAwBACdASoQABQAPulgqE0pJaOiMAgBIB0JaACdAB+U2HeJXy+f0OA/JLQA/pGTyrxLc/sVrcXQEnrq+TIgFS3+MvQ8ofHoaXv0ns9qmnxEzxvhrivpb59Q6bRYjEHMf5N2pgOiO2qjdJbNqQCjQvazvy/hdT90YJFkDZezFsysZIpR/RR+k8nsdqQHYq8AAAA=",
+  "source": "PISOS/045_Pedra_Granito_Mosaico_Piso_1.jpeg"
+ },
+ "acervo/046-pedra-granito-rustico-piso-1": {
+  "base": "assets/img/acervo/046-pedra-granito-rustico-piso-1",
+  "w": 633,
+  "h": 787,
+  "widths": [
+   420,
+   633
+  ],
+  "social": {
+   "w": 633,
+   "h": 787
+  },
+  "lqip": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAADwAwCdASoQABQAPulgqE0pJaOiMAgBIB0JYwCdACINq6rdnNKjS3CAAP7n9eEMDPLBSMia32V/8v1Gp4rUyPL7pjlG5hCIDLJdlXIqfMalc1Qdg1+rMCx11L+p9KZWkqB9VlBfGpZ7Aax62TbjHSPxhkSWgAAA",
+  "source": "PISOS/046_Pedra_Granito_Rústico_Piso_1.jpeg"
+ },
+ "acervo/048-pedra-quartzito-verde-lajao-1": {
+  "base": "assets/img/acervo/048-pedra-quartzito-verde-lajao-1",
+  "w": 630,
+  "h": 789,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 789
+  },
+  "lqip": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAACQAwCdASoQABQAPulep00pJSOiMAgBIB0JYwAAKw/FiVSvaZAAAPnNNtlfmrunB5o9h5oCQDd7xi/K4ZkFOoNEaiQtetM387Gg8o2xYPJahwfMY0Ckhc7Dl4oDgZjgAAA=",
+  "source": "PISOS/048_Pedra_Quartzito_Verde_Lajão_1.jpeg"
+ },
+ "acervo/049-pedra-sao-tome-lajao-1": {
+  "base": "assets/img/acervo/049-pedra-sao-tome-lajao-1",
+  "w": 632,
+  "h": 787,
+  "widths": [
+   420,
+   632
+  ],
+  "social": {
+   "w": 632,
+   "h": 787
+  },
+  "lqip": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAADwAwCdASoQABQAPuleqE0pJSOiMAgBIB0JQBOgA6dhZB5IZEboGB4AAP7ANcU3DWxvgv3PQvthyZQobud+yjBfqeaJxxZfnct5mSKMIZwf+sfD0EnoB7y3NAaWiwJCpe2pbJVAD07Uhn7T9BgCp5xVTG68KSAuowdUAA==",
+  "source": "PISOS/049_Pedra_São_Tomé_Lajão_1.jpeg"
+ },
+ "acervo/050-pedra-vermelha-do-sul-lajao-1": {
+  "base": "assets/img/acervo/050-pedra-vermelha-do-sul-lajao-1",
+  "w": 630,
+  "h": 791,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 791
+  },
+  "lqip": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAAAwBACdASoQABQAPuleqE0pJSOiMAgBIB0JaACdMoAC+zRdWtwRd9IFlwAA/uRRLdjRFYw2r0sivdWZR17CM/JWvpz79J2+UAXOgHZ++mUnoDhUS4qctOFiDOUKJeYzaGDsN2fCuLjnmGP2bQyL7mKm1H7g9Wo/Uc7Uq1TeRGOTRLl2+OFPgJ5rMeTBn5Us6NW7taZVjv3d6n0oyIAAAA==",
+  "source": "PISOS/050_Pedra_Vermelha_do_Sul_Lajão_1.jpeg"
+ },
+ "acervo/00-moledo-branca-1": {
+  "base": "assets/img/acervo/00-moledo-branca-1",
+  "w": 1284,
+  "h": 1544,
+  "widths": [
+   420,
+   640,
+   960,
+   1280,
+   1284
+  ],
+  "social": {
+   "w": 1200,
+   "h": 1443
+  },
+  "lqip": "data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAABQBACdASoRABQAPulYqU2pJKQiMBgMASAdCWUAwNwPOfTTqwdMjpbPDZwAAP6PiNVCwrzTNs/PWP/n8paAbpNHNrLbWa4lmCAZGOGYeBnBRyU0oPrQ5YaNskSTF3pa84CkTxTV6CFFC3JQt+TPwtxlwAA=",
+  "source": "REVESTIMENTOS/00_Moledo_Branca_1.jpeg"
+ },
+ "acervo/01-moledo-campestre-1": {
+  "base": "assets/img/acervo/01-moledo-campestre-1",
+  "w": 633,
+  "h": 787,
+  "widths": [
+   420,
+   633
+  ],
+  "social": {
+   "w": 633,
+   "h": 787
+  },
+  "lqip": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAAAwBACdASoQABQAPulgqE0pJaOiMAgBIB0JZACw7Bbalh85Cm977HyVhwAA/tId+wqTZyMqwernN2DcV6ViQLmwpHFUmhRsly8SCCKic7/NeTO4O+ePmXfMViKXbo+C0fK5iKbhcppCGrxzU7a6zJLYeze465oBPGd5CYmAAAA=",
+  "source": "REVESTIMENTOS/01_Moledo_Campestre_1.jpeg"
+ },
+ "acervo/02-moledo-natural-champagne-1": {
+  "base": "assets/img/acervo/02-moledo-natural-champagne-1",
+  "w": 632,
+  "h": 791,
+  "widths": [
+   420,
+   632
+  ],
+  "social": {
+   "w": 632,
+   "h": 791
+  },
+  "lqip": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAADQAwCdASoQABQAPuleqE0pJSOiMAgBIB0JQBdgA7twT+9VXwgliAAA/piVXg61M+4cXsffQBU9em+QE8qdFlmSaJN6OhlaleC/X835h9rbMTiGNqlFX9HaV1lUEeeP0a3iGj48Sf4oX39IwxDmAyHqZeAAAA==",
+  "source": "REVESTIMENTOS/02_Moledo_Natural_Champagne_1.jpeg"
+ },
+ "acervo/03-moledo-natural-da-terra-1": {
+  "base": "assets/img/acervo/03-moledo-natural-da-terra-1",
+  "w": 853,
+  "h": 1071,
+  "widths": [
+   420,
+   640,
+   853
+  ],
+  "social": {
+   "w": 853,
+   "h": 1071
+  },
+  "lqip": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAAAQBACdASoQABQAPulgqE0pJaOiMAgBIB0JbACdMoRwN6AAFVYLIZRRAAD8WKBkHxJ4vgjFpXfyG46SCXE4cDKQga1Qr8L0+t5qrDPN5QXUYvUH2we5nfwNonNduFj3swr6ftAA",
+  "source": "REVESTIMENTOS/03_Moledo_Natural_Da_Terra_1.jpeg"
+ },
+ "acervo/04-moledo-natural-pampas-1": {
+  "base": "assets/img/acervo/04-moledo-natural-pampas-1",
+  "w": 630,
+  "h": 790,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 790
+  },
+  "lqip": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAACwAwCdASoQABQAPulep00pJSOiMAgBIB0JQBYfRAABgV1cg1KmAAD84iNog77srAz044fTNMFzO33MECH13z9Ynu1kxR71ab+OkHNbXv3/fWwJhi1PnfF5Ul7+Ib2NZ0Rp2+WAfuBy1eMld2I6SO4I3UAAAA==",
+  "source": "REVESTIMENTOS/04_Moledo_Natural_Pampas_1.jpeg"
+ },
+ "acervo/05-moledo-raizes-flocus-1": {
+  "base": "assets/img/acervo/05-moledo-raizes-flocus-1",
+  "w": 633,
+  "h": 787,
+  "widths": [
+   420,
+   633
+  ],
+  "social": {
+   "w": 633,
+   "h": 787
+  },
+  "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADQAwCdASoQABQAPuleqE0pJSOiMAgBIB0JZwC/OCBveXkQ1jmrwmAA/tvBirMJb5LCoA9fztQQBZHs7ukk7+Q9s5PNiVuF9IxHoV0rRSJ+yAAA",
+  "source": "REVESTIMENTOS/05_Moledo_Raízes_Flocus_1.jpeg"
+ },
+ "acervo/06-moledo-raizes-gold-1": {
+  "base": "assets/img/acervo/06-moledo-raizes-gold-1",
+  "w": 630,
+  "h": 789,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 789
+  },
+  "lqip": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAABwAwCdASoQABQAPuleqE0pJSOiMAgBIB0JZAAAW5jgwz/br1AA/uJ4otnr3c44GWNepjqUiTzEjoIgCMUwZrQb+dxXw3qNsFxnZkVXzoeumgk3Z5CV9VIKEYl4bV2Iiv61F+cm5Ktnd4uAAAA=",
+  "source": "REVESTIMENTOS/06_Moledo_Raízes_Gold_1.jpeg"
+ },
+ "acervo/07-moledo-raizes-nevoa-1": {
+  "base": "assets/img/acervo/07-moledo-raizes-nevoa-1",
+  "w": 630,
+  "h": 791,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 791
+  },
+  "lqip": "data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAABwBACdASoQABQAPuleqE0pJSOiMAgBIB0JQBWEGghioV8H3TxzJtQ7FGvhAAD+6kyvRx5a/IHyW/o3I/xHD+/QpQJodJnctOUJy8U/UzUY9l206LsVgwSl2GrEiNllVxuvLOu2UHNadsxq36PL10bvMM+2/dPuqwtYyY/Re+tbT4sjEKwAAA==",
+  "source": "REVESTIMENTOS/07_Moledo_Raízes_Névoa_1.jpeg"
+ },
+ "acervo/08-moledo-ornado-2": {
+  "base": "assets/img/acervo/08-moledo-ornado-2",
+  "w": 630,
+  "h": 791,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 791
+  },
+  "lqip": "data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAAAwBACdASoQABQAPulep00pJSOiMAgBIB0JZgC2yBnfLRT720ccHNmp5AAA/tctRX+d7cKah/ZDbS91m0q78/NS+aYQGoolJkU9/7yyTlayk6HvTu3ytczsins6X7xxxiESW9q+sD69j8XRv+46CxWPrnqI7aK184M2D3XK6u25tq/9zIW3nKX7W87AAA==",
+  "source": "REVESTIMENTOS/08_Moledo_Ornado_2.jpeg"
+ },
+ "acervo/09-moledo-filete-mosaico-1": {
+  "base": "assets/img/acervo/09-moledo-filete-mosaico-1",
+  "w": 630,
+  "h": 790,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 790
+  },
+  "lqip": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAADQAwCdASoQABQAPulgqE0pJaOiMAgBIB0JZQC7AA+eGXtvscDeUoAA/sV4ffWXvoNPbo3eSQRHVpJnStOa2YKXuduFqtpAvm8KaDTfTqUhmdjDFjjCsmVMprEm7cg88VCSMjc6akkJCvScRorokmZ4qVY164J2bMyAAA==",
+  "source": "REVESTIMENTOS/09_Moledo_Filete_Mosaico_1.jpeg"
+ },
+ "acervo/10-moledo-mosaico-1": {
+  "base": "assets/img/acervo/10-moledo-mosaico-1",
+  "w": 630,
+  "h": 791,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 791
+  },
+  "lqip": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAABQAwCdASoQABQAPuleqE0pJSOiMAgBIB0JYwCdABsGmROtTgD4m7nbz+t36JwRTGSI/Ee6kz4KaX1ZY9YEY50oiq5b5OqLxPjHqM6ev3HDg/j6ZuBGJ6AH+44PeCyAAAA=",
+  "source": "REVESTIMENTOS/10_Moledo_Mosaico_1.jpeg"
+ },
+ "acervo/11-moledo-talhada-natural-1": {
+  "base": "assets/img/acervo/11-moledo-talhada-natural-1",
+  "w": 630,
+  "h": 790,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 790
+  },
+  "lqip": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAABQBACdASoQABQAPulgqE0pJaOiMAgBIB0JbACdMoRwIswA4EIhq3ZBuKiCAP6OkyPn6jH2d7vQGm/evKR1sxR8LMUOWmwczbtdwEJiy+ra8AR25FFtXGHcWnMLsSwC7I6unVJM6GsT0EtuVz+LnDjwtS61CTV5hggTjuI/jJJWyWAA",
+  "source": "REVESTIMENTOS/11_Moledo_Talhada_Natural_1.jpeg"
+ },
+ "acervo/12-pedra-atacama-branca-acinzentada-1": {
+  "base": "assets/img/acervo/12-pedra-atacama-branca-acinzentada-1",
+  "w": 630,
+  "h": 791,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 791
+  },
+  "lqip": "data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAABwBACdASoQABQAPulep00pJSOiMAgBIB0JYgCdMoGv/gO16KZLljHdWIZyYAD3vKbStHOjRumweQpDcw4xZ5k77CRgNCIlPhoTn8doo3y437vNSHKCIU6HPv1cn5e9wlOjBb4CGlR+y6p3hP8Wz0LiT54UCLsPRyvtgAAA",
+  "source": "REVESTIMENTOS/12_Pedra_Atacama_Branca_acinzentada_1.jpeg"
+ },
+ "acervo/13-pedra-atacama-bege-1": {
+  "base": "assets/img/acervo/13-pedra-atacama-bege-1",
+  "w": 736,
+  "h": 809,
+  "widths": [
+   420,
+   640,
+   736
+  ],
+  "social": {
+   "w": 736,
+   "h": 809
+  },
+  "lqip": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAACwBACdASoSABQAPulmq1ApJSOiqAqpIB0JZwDKtAl4XeFy3lF3Xsk7kkatGNmAAP7Ez3bNqTvsIx6iupr4WjEOshEnEDdOMIbb6LgVttWlYnE8K+dWslY7NfQhqfWf8Uv3TEAAAAA=",
+  "source": "REVESTIMENTOS/13_Pedra_Atacama_Bege_1.jpg"
+ },
+ "acervo/14-pedra-granito-mosaico-1": {
+  "base": "assets/img/acervo/14-pedra-granito-mosaico-1",
+  "w": 630,
+  "h": 790,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 790
+  },
+  "lqip": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAABwAwCdASoQABQAPulgqE0pJaQiMAgBIB0JYgCsACB6G4RNQeAA/o7QmQZEFUEkAKSyjlVGD3w0G7JerQnAPk4jsQ3iaX/xTKPo8Lvkxp0SbgiTPdx7OCtU6nVMRY0WMoBIAA==",
+  "source": "REVESTIMENTOS/14_Pedra_Granito_Mosaico_1.jpeg"
+ },
+ "acervo/15-pedra-granito-rustico-1": {
+  "base": "assets/img/acervo/15-pedra-granito-rustico-1",
+  "w": 631,
+  "h": 787,
+  "widths": [
+   420,
+   631
+  ],
+  "social": {
+   "w": 631,
+   "h": 787
+  },
+  "lqip": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwAwCdASoQABQAPulgqE0pJaOiMAgBIB0JQBOgA8nxYC2u94KqAADa07xME4H8JFvWWO4G77Gt1Nywjuqb9Onjv1CLzQ0ohXustqwpmK3nKChYmYivVsfOLV6AK9tm//+VHL1VmTgAAA==",
+  "source": "REVESTIMENTOS/15_Pedra_Granito_Rústico_1.jpeg"
+ },
+ "acervo/16-pedra-madeira-branca-especial-bossa-nova-2": {
+  "base": "assets/img/acervo/16-pedra-madeira-branca-especial-bossa-nova-2",
+  "w": 630,
+  "h": 789,
+  "widths": [
+   420,
+   630
+  ],
+  "social": {
+   "w": 630,
+   "h": 789
+  },
+  "lqip": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAADwAwCdASoQABQAPulgqU2pJaQiMAgBIB0JQBjehDv8gFdHfSB9SPQAAP7qdJePdcrC0w/isRJPSQf3Uxl5Y+LBMkxafYbPaPeEP256/amyh79PW3sVuBkDv1lXEUOKNonyluy9+uIxjCKfqrH87aKxfAAAAA==",
+  "source": "REVESTIMENTOS/16_Pedra_Madeira_Branca_Especial_Bossa_Nova_2.jpeg"
+ },
+ "acervo/17-pedra-madeira-cinza-1": {
+  "base": "assets/img/acervo/17-pedra-madeira-cinza-1",
+  "w": 631,
+  "h": 791,
+  "widths": [
+   420,
+   631
+  ],
+  "social": {
+   "w": 631,
+   "h": 791
+  },
+  "lqip": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAADQAwCdASoQABQAPulgqE0pJaOiMAgBIB0JYgC7ABbZL3WHOSK74QAA/uog3lNSEKq8b+TjxnMrA+Jtovis9hDIKSbgnLUy6DFE6uM0Cwo8sk3AcaVSrrsL1vAAAA==",
+  "source": "REVESTIMENTOS/17_Pedra_Madeira_Cinza_1.jpeg"
+ },
+ "acervo/18-pedra-miracema-laje-1": {
+  "base": "assets/img/acervo/18-pedra-miracema-laje-1",
+  "w": 647,
+  "h": 802,
+  "widths": [
+   420,
+   640,
+   647
+  ],
+  "social": {
+   "w": 647,
+   "h": 802
+  },
+  "lqip": "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAADQAwCdASoQABQAPulep00pJSOiMAgBIB0JYwAAV8h0k++twDKPLcgA/mzzWfeN2eUykSPAaMFwOuZIj8Gv6SywY544LCYtIt+3Bf8LcLJ5Gr2WpJ9tOfJEXMl28tKiP//AXC+zH6kdkZj9uTJhECgA",
+  "source": "REVESTIMENTOS/18_Pedra_Miracema_Laje_1.jpeg"
+ },
+ "marca/residencia-encosta": {
+  "base": "assets/img/marca/residencia-encosta",
+  "w": 1023,
+  "h": 1537,
+  "widths": [
+   420,
+   640,
+   960,
+   1023
+  ],
+  "social": {
+   "w": 1023,
+   "h": 1537
+  },
+  "lqip": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAABQBACdASoNABQAPuleqE0pJSQiMAgBIB0JQBOmUGMACW9ehrgd4jxEzEzQAP7WH/+fePub5w+2ah50ntbS7YwPSSQmby9YePStgboulhnGwbQb+T2QkR54Ymvy41bPLIBahqLsisEdK0+fM7t9RuV14qMFMAAA"
+ },
+ "marca/estar-alvenaria": {
+  "base": "assets/img/marca/estar-alvenaria",
+  "w": 683,
+  "h": 1024,
+  "widths": [
+   420,
+   640,
+   683
+  ],
+  "social": {
+   "w": 683,
+   "h": 1024
+  },
+  "lqip": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACQAwCdASoNABQAPuleqE0pJSOiMAgBIB0JZQAAUkzE7rK2gk4MAP6I9De2rSwHS+jQqZLkLkYARGip/EofHFHazVWi//FvymtdXNZQehDQKvhAzG3xEeYyytkHUg6FvHsmrcYaMzCAAA=="
+ },
+ "marca/alvenaria-seca": {
+  "base": "assets/img/marca/alvenaria-seca",
+  "w": 816,
+  "h": 1456,
+  "widths": [
+   420,
+   640,
+   816
+  ],
+  "social": {
+   "w": 816,
+   "h": 1456
+  },
+  "lqip": "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAADwAwCdASoLABQAPuleqE0pJSOiMAgBIB0JYwCw7BCPYySjVGyUcywAAP7s0M8aYHIjccbRfiyWsOm/6Et0L1hVbiUfQ55xkVAiIRcgrHp6KnTVVeeneW9BMksDd7DweMV3vsyHJhOF4y5yHaTdzmAA"
+ },
+ "marca/travertino-romano": {
+  "base": "assets/img/marca/travertino-romano",
+  "w": 1200,
+  "h": 1200,
+  "widths": [
+   420,
+   640,
+   960,
+   1200
+  ],
+  "social": {
+   "w": 1200,
+   "h": 1200
+  },
+  "lqip": "data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAACwBACdASoUABQAPulsrlGpJaQiqAgBIB0JZwDE2BEdFToZfGz/qLnTlDC63qIAAP7zdQPZ4MAtdreCYtI5wyGdcDtUOIdWJ1ggoRMEoEmmfD7y27N5q8XZwRm9ZAP09uEInjTwc3ycxpT2O87ClaC39j6iM6/ZFgcd2/AA"
+ },
+ "marca/muro-noturno": {
+  "base": "assets/img/marca/muro-noturno",
+  "w": 736,
+  "h": 1104,
+  "widths": [
+   420,
+   640,
+   736
+  ],
+  "social": {
+   "w": 736,
+   "h": 1104
+  },
+  "lqip": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADQAwCdASoNABQAPuliq04pJaQiMAgBIB0JZQDCgCHfs/w7D4W2nAAA/vQbJN3OnndJB9k8kPpWdGUNpddH02/YCt2eY3jkDSbzzSBsZxwXFI+Ruu62zVxr4AA="
+ },
+ "marca/marmore-grafite": {
+  "base": "assets/img/marca/marmore-grafite",
+  "w": 1200,
+  "h": 1600,
+  "widths": [
+   420,
+   640,
+   960,
+   1200
+  ],
+  "social": {
+   "w": 1200,
+   "h": 1600
+  },
+  "lqip": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAADwAwCdASoPABQAPulgqE0pJaOiMAgBIB0JQBOmUEr/ARfc6c1Pjm1AAP7w3xHmEfKRKrty/nk/4I5HNlw6W5JqPORKLhW4I6/oQmE+O5vGFD3uhgZkPqwNmlAQk6pBUgeCUkuvZnlKYAAA"
+ }
+}

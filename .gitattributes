@@ -1,0 +1,7 @@
+# Texto com fim de linha normalizado no repositório; binários nunca são tocados.
+* text=auto
+*.webp binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.woff2 binary
