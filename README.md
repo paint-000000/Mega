@@ -71,9 +71,9 @@ Estão marcados em `build/data.mjs` → `orcamento`.
 O Figma entrega uma home em cards. O site é uma releitura editorial da mesma
 marca — mesma paleta, mesmos textos, outra arquitetura de experiência.
 
-**Tipografia.** O logotipo é uma serifada didone com o **Λ** grego no lugar do A.
-O site estende essa voz: **Bodoni Moda** nos títulos (a mesma família
-tipológica do logotipo) e **Inter** — a sans do Figma — em interface e texto
+**Tipografia.** O logotipo é um lettering geométrico desenhado sobre o símbolo
+(bloco com o M recortado), conforme o brand book no Figma. O site usa
+**Bodoni Moda** nos títulos e **Inter** — a sans do Figma — em interface e texto
 corrido. Só duas famílias, com hierarquia declarada em `--t-*`.
 
 **Cor.** Estritamente a do Figma. Nenhum tom novo. As variáveis pedidas existem

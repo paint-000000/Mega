@@ -432,7 +432,7 @@ a:focus-visible > .plate img { transform: scale(1.02); filter: saturate(1) contr
   color: var(--color-text);
   transition: opacity var(--dur-fast) var(--ease);
 }
-.brand svg { width: clamp(150px, 15vw, 200px); height: auto; }
+.brand svg { width: clamp(176px, 17vw, 232px); height: auto; }
 @media (hover: hover) and (pointer: fine) { .brand:hover { opacity: .82; } }
 
 .nav { display: flex; gap: clamp(var(--sp-lg), 2.4vw, var(--sp-2xl)); margin-inline: auto; }
