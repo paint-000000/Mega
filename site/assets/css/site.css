@@ -1055,3 +1055,29 @@ a:focus-visible > .plate img { transform: scale(1.02); filter: saturate(1) contr
 /* Bloco de contato: duas colunas, porque um e-mail não cabe em 144 px. */
 .ficha--contato { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-width: 520px) { .ficha--contato { grid-template-columns: 1fr; } }
+
+/* ---------------------------------------------------------------- whatsapp */
+/* Atalho flutuante em toda página. Fica na paleta da marca — quem reconhece o
+   canal é o ícone — e abaixo do menu mobile, que o cobre quando aberto. */
+.whatsapp {
+  position: fixed; z-index: calc(var(--z-menu) - 10);
+  right: max(var(--sp-md), env(safe-area-inset-right));
+  bottom: max(var(--sp-md), env(safe-area-inset-bottom));
+  display: inline-flex; align-items: center; gap: var(--sp-xs);
+  min-height: 56px; padding-inline: var(--sp-md) var(--sp-lg);
+  border: 1px solid var(--border-strong); border-radius: 999px;
+  background: rgb(18 17 16 / .92); color: var(--color-text);
+  backdrop-filter: blur(10px);
+  font-size: var(--t-small); font-weight: 500; line-height: 1;
+  box-shadow: 0 8px 24px rgb(10 10 9 / .35);
+  transition: border-color var(--dur-fast) var(--ease), transform var(--dur-micro) var(--ease);
+}
+.whatsapp .ico { width: 24px; height: 24px; color: var(--color-secondary); }
+.whatsapp:active { transform: scale(.98); }
+@media (hover: hover) and (pointer: fine) { .whatsapp:hover { border-color: var(--color-secondary); } }
+/* No celular vira só o círculo: o rótulo continua no aria-label. */
+@media (max-width: 520px) {
+  .whatsapp { width: 56px; padding: 0; justify-content: center; }
+  .whatsapp__rotulo { display: none; }
+}
+@media print { .whatsapp { display: none; } }

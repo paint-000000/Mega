@@ -40,6 +40,9 @@ export const brand = {
     'Fornecemos e instalamos para arquitetura residencial de alto padrão em todo o Brasil.',
   telefone: '+55 11 4000-0000',
   telefoneLink: '+551140000000',
+  // Número de exemplo, como o telefone: trocar pelo WhatsApp real (só dígitos, com DDI).
+  whatsapp: '551140000000',
+  whatsappMensagem: 'Olá! Vim pelo site da Magah Minerale e gostaria de falar sobre um projeto.',
   email: 'contato@magahminerale.com.br',
   pracas: 'São Paulo · Vitória',
   horario: 'Seg a sex, 8h–18h',

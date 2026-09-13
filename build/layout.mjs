@@ -7,7 +7,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { brand, nav, img, aplicacoes, colecoes } from './data.mjs';
-import { arrow } from './icons.mjs';
+import { arrow, whatsapp } from './icons.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SITE = join(HERE, '..', 'site');
@@ -226,6 +226,7 @@ ${header(base, active)}
 ${body}
 </main>
 ${footer(base)}
+<a class="whatsapp" href="https://wa.me/${brand.whatsapp}?text=${encodeURIComponent(brand.whatsappMensagem)}" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp (abre em nova aba)">${whatsapp}<span class="whatsapp__rotulo">WhatsApp</span></a>
 <script src="${base}assets/js/site.js" defer></script>
 </body>
 </html>`;
