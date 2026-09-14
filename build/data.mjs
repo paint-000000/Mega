@@ -52,8 +52,10 @@ export const brand = {
   endereco: null,
   horario: null,
   cnpj: null,
-  // Usado só em canonical, og:image e sitemap. Também é valor de exemplo.
-  dominio: 'https://www.magahminerale.com.br',
+  /* Endereço onde o site está no ar — canonical, sitemap e a pré-visualização
+     do link (og:image precisa de URL absoluta que responda). Trocar quando
+     houver domínio próprio. */
+  dominio: 'https://paint-000000.github.io/Mega',
 };
 
 export const nav = [
