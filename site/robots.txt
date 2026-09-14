@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://paint-000000.github.io/Mega/sitemap.xml
+Sitemap: https://magah-minerale.vercel.app/sitemap.xml

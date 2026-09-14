@@ -55,7 +55,7 @@ export const brand = {
   /* Endereço onde o site está no ar — canonical, sitemap e a pré-visualização
      do link (og:image precisa de URL absoluta que responda). Trocar quando
      houver domínio próprio. */
-  dominio: 'https://paint-000000.github.io/Mega',
+  dominio: 'https://magah-minerale.vercel.app',
 };
 
 export const nav = [
