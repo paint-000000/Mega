@@ -680,11 +680,14 @@ a:focus-visible > .plate img { transform: scale(1.02); filter: saturate(1) contr
 .intro__media .caption { margin-top: var(--sp-sm); }
 
 .figures {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--sp-xl) var(--sp-lg);
+  /* Os três números numa linha só — com duas colunas o terceiro caía sozinho
+     embaixo. O rótulo quebra em duas linhas no celular, o número não. */
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-xl) clamp(var(--sp-md), 3vw, var(--sp-lg));
   margin-top: clamp(var(--sp-2xl), 5vw, var(--sp-3xl));
   border-top: 1px solid var(--border-subtle); padding-top: var(--sp-xl);
 }
+.figures > div { text-align: center; }
 .figures dt { font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1; color: var(--color-text); }
 .figures dd { margin-top: var(--sp-xs); font-size: var(--t-label); letter-spacing: .08em; text-transform: uppercase; color: var(--color-muted); }
 
@@ -925,6 +928,12 @@ a:focus-visible > .plate img { transform: scale(1.02); filter: saturate(1) contr
   margin-top: var(--sp-xl); padding-top: var(--sp-lg);
   border-top: 1px solid var(--color-subtle);
   font-size: var(--t-small); color: var(--color-text-2);
+}
+/* No celular, "Ou fale direto:" em cima e um canal por linha — em linha, o
+   ponto separador e o Instagram quebravam soltos. */
+@media (max-width: 720px) {
+  .cta__canais { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-sm); }
+  .cta__canais > span[aria-hidden] { display: none; }
 }
 
 /* Pedido de orçamento: o botão e, ao lado, o que ele faz. */
