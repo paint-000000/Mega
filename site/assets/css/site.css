@@ -81,13 +81,19 @@
   --z-skip: 120;
   --z-grain: 130;
 
-  --header-h: 76px;
+  /* Área do relógio e da bateria no iPhone (viewport-fit=cover): a barra desce
+     até o topo da tela e pinta essa faixa; todo recuo que usa --header-h já
+     conta com ela. Fora do iPhone vale 0. */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --header-h: calc(76px + var(--safe-top));
 }
 
 /* -------------------------------------------------------------- reset base */
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
+  /* pinta também o que o Safari mostra além da página (topo e rolagem elástica) */
+  background-color: var(--color-background);
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + var(--sp-lg));
@@ -406,6 +412,7 @@ a:focus-visible > .plate img { transform: scale(1.02); filter: saturate(1) contr
 .header {
   position: fixed; inset: 0 0 auto; z-index: var(--z-header);
   height: var(--header-h);
+  padding-top: var(--safe-top);
   display: flex; align-items: center;
   transition: background var(--dur) var(--ease),
               border-color var(--dur) var(--ease),
@@ -498,7 +505,7 @@ a:focus-visible > .plate img { transform: scale(1.02); filter: saturate(1) contr
 
 /* Barra de progresso de leitura. */
 .progress {
-  position: fixed; inset: 0 0 auto; z-index: var(--z-progress);
+  position: fixed; inset: var(--safe-top) 0 auto; z-index: var(--z-progress);
   height: 2px; background: var(--color-primary);
   transform: scaleX(var(--p, 0)); transform-origin: left;
   will-change: transform;
@@ -556,7 +563,7 @@ a:focus-visible > .plate img { transform: scale(1.02); filter: saturate(1) contr
   .header::before { opacity: 0; }
 }
 @media (max-width: 720px) {
-  :root { --header-h: 60px; }
+  :root { --header-h: calc(60px + var(--safe-top)); }
   .brand svg { width: 152px; }
 }
 @media (max-width: 520px) {
