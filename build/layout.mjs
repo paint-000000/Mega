@@ -6,8 +6,8 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { brand, nav, img, aplicacoes, colecoes } from './data.mjs';
-import { arrow, whatsapp } from './icons.mjs';
+import { brand, nav, img, aplicacoes } from './data.mjs';
+import { arrow, whatsapp, instagram } from './icons.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SITE = join(HERE, '..', 'site');
@@ -75,6 +75,24 @@ export function lines(arr, { revelar = true } = {}) {
     .join('')}</span>`;
 }
 
+/** Marca de conteúdo que ainda falta — itálico esmaecido, nunca um valor de exemplo. */
+export const pendente = (texto) => `<span class="is-open">${texto}</span>`;
+
+/** Canais de contato que existem de fato. Campo nulo em `brand` não aparece. */
+export const whatsappHref = () =>
+  `https://wa.me/${brand.whatsapp}?text=${encodeURIComponent(brand.whatsappMensagem)}`;
+
+export function canais() {
+  return [
+    brand.whatsapp && { rotulo: 'WhatsApp', html: `<a class="link-simple canal" href="${esc(whatsappHref())}" target="_blank" rel="noopener">${whatsapp}<span class="visually-hidden">WhatsApp</span>${brand.whatsappExibicao}</a>` },
+    brand.instagram && { rotulo: 'Instagram', html: `<a class="link-simple canal" href="${brand.instagram}" target="_blank" rel="noopener">${instagram}<span class="visually-hidden">Instagram</span>${brand.instagramUsuario}</a>` },
+    brand.telefone && { rotulo: 'Telefone', html: `<a class="link-simple" href="tel:${brand.telefoneLink}">${brand.telefone}</a>` },
+    brand.email && { rotulo: 'E-mail', html: `<a class="link-simple" href="mailto:${brand.email}">${brand.email}</a>` },
+    brand.endereco && { rotulo: 'Endereço', html: brand.endereco },
+    brand.horario && { rotulo: 'Atendimento', html: brand.horario },
+  ].filter(Boolean);
+}
+
 export function btn(label, href, variant = 'secondary', extra = '') {
   return `<a class="btn btn--${variant}" href="${href}"${extra}>${label}${arrow}</a>`;
 }
@@ -110,22 +128,15 @@ function header(base, active) {
       ${nav.map((n, i) => `<a href="${base}${n.href}" style="--i:${i}">${n.label}</a>`).join('')}
       <a href="${base}contato.html" style="--i:${nav.length}">Contato</a>
     </nav>
-    <div class="menu__foot">
-      <a href="tel:${brand.telefoneLink}">${brand.telefone}</a>
-      <a href="mailto:${brand.email}">${brand.email}</a>
-      <span>${brand.pracas} · ${brand.horario}</span>
-    </div>
+    ${canais().length ? `<div class="menu__foot">${canais().map((c) => c.html.replace(/\blink-simple\s?/, '')).map((h) => h.startsWith('<a') ? h : `<span>${h}</span>`).join('')}</div>` : ''}
   </div>`;
 }
 
 function footer(base) {
-  const colecoesLinks = colecoes
-    .map((c) => `<li><a href="${base}colecoes/${c.slug}.html">${c.nome}</a></li>`)
-    .join('');
   const aplicacoesLinks = aplicacoes
-    .slice(0, 4)
     .map((a) => `<li><a href="${base}${a.href}">${a.nome}</a></li>`)
     .join('');
+  const contato = canais();
 
   return `
   <footer class="footer">
@@ -136,28 +147,29 @@ function footer(base) {
           <p>${brand.assinatura}</p>
         </div>
         <div>
-          <h2>Coleções</h2>
-          <ul>${colecoesLinks}</ul>
+          <h2>Aplicações</h2>
+          <ul>${aplicacoesLinks}</ul>
         </div>
         <div>
-          <h2>Aplicações</h2>
-          <ul>${aplicacoesLinks}<li><a href="${base}aplicacoes.html">Ver todas</a></li></ul>
+          <h2>Acervo</h2>
+          <ul>
+            <li><a href="${base}acervo.html">Todas as pedras</a></li>
+            <li><a href="${base}aplicacoes.html">Por aplicação</a></li>
+          </ul>
         </div>
         <div>
           <h2>Contato</h2>
           <ul>
-            <li><a href="tel:${brand.telefoneLink}">${brand.telefone}</a></li>
-            <li><a href="mailto:${brand.email}">${brand.email}</a></li>
-            <li><span>${brand.pracas}</span></li>
-            <li><span>${brand.horario}</span></li>
+            ${contato.length
+              ? contato.map((c) => `<li>${c.html.startsWith('<a') ? c.html.replace(/\blink-simple\s?/, '') : `<span>${c.html}</span>`}</li>`).join('')
+              : `<li><span>${pendente('Canais a definir')}</span></li>`}
           </ul>
         </div>
       </div>
       <div class="footer__legal">
-        <span>© <span data-ano>2026</span> ${brand.nomeCompleto} · ${brand.cnpj}</span>
+        <span>© <span data-ano>2026</span> ${brand.nomeCompleto}${brand.cnpj ? ` · ${brand.cnpj}` : ''}</span>
         <ul>
           <li><a href="${base}sobre.html">Sobre</a></li>
-          <li><a href="${base}processo.html">Processo</a></li>
           <li><a href="${base}contato.html">Contato</a></li>
         </ul>
       </div>
@@ -226,7 +238,7 @@ ${header(base, active)}
 ${body}
 </main>
 ${footer(base)}
-<a class="whatsapp" href="https://wa.me/${brand.whatsapp}?text=${encodeURIComponent(brand.whatsappMensagem)}" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp (abre em nova aba)">${whatsapp}<span class="whatsapp__rotulo">WhatsApp</span></a>
+${brand.whatsapp ? `<a class="whatsapp" href="${esc(whatsappHref())}" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp (abre em nova aba)">${whatsapp}<span class="whatsapp__rotulo">WhatsApp</span></a>` : ''}
 <script src="${base}assets/js/site.js" defer></script>
 </body>
 </html>`;

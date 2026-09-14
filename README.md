@@ -13,56 +13,46 @@ Abrir: sirva a pasta `site/` (`python -m http.server 4173 --directory site`).
 
 ## 1. De onde vem cada coisa
 
-Nada no site foi inventado. As duas fontes:
+**A Magah vende só o que está no quadro de produtos.** Tudo o que o site diz
+sobre pedra sai de duas fontes:
 
-**Arquivo Figma** (`phhwxTc201bO9i1FCHBRVS`, frame `Home — Dark`) — identidade e
-conteúdo institucional, transcritos literalmente:
+**Quadro de produtos** (planilha do cliente) — transcrito literalmente em
+`build/data.mjs` → `QUADRO`: tipologia, produto, cor/tonalidade, tamanho,
+espessura e unidade de venda. São 41 linhas, 33 pedras e 6 tipologias. A grafia
+dos nomes é a do quadro ("Moledo Natural Daterra", "Pedra Atacama Branca",
+"Calçamentos e Estradas", "Caminhos e Praças"), mesmo quando o nome do arquivo
+de foto diverge.
 
-| O quê | Onde aparece |
-| --- | --- |
-| Logotipos (horizontal e empilhado) | cabeçalho, rodapé, favicon |
-| Paleta completa (tokens `--mt-*`) | `site/assets/css/site.css`, bloco `:root` |
-| Escala tipográfica, espaçamento, raios, alturas de controle | idem |
-| Manifesto "A pedra não reveste. Ela define o lugar." | hero, Sobre |
-| Texto institucional, praças, telefone, e-mail, horário | hero, rodapé, Contato |
-| As 4 coleções, com descrição, etiqueta e preço | Coleções e páginas de coleção |
-| Seção Aplicações (título, texto, 6 etiquetas de uso) | home, Aplicações |
-| Processo em 4 etapas + garantia de 5 anos | home, Processo |
-| Bloco de orçamento (título, texto, botão, prazo de resposta) | faixa de CTA, Contato |
-| Ícones `icon/search`, `layers`, `calendar`, `check`, `arrow-right` | `build/icons.mjs` |
-| 6 fotografias | `site/assets/img/marca/` |
+**Pastas de fotografia deste diretório**: 41 fotografias de obra, uma por linha
+do quadro. A foto encontra a sua linha pelo número que abre o nome do arquivo
+(`060_Pedra_Granito_Escadas_1.jpeg` → `ref: '060'`). O build falha se sobrar
+foto sem linha ou linha sem foto. A mesma pedra em várias tipologias é um só
+produto: as linhas viram a ficha e as fotos, a galeria.
 
-**Pastas de fotografia deste diretório** — o acervo real:
+**Arquivo Figma** (`phhwxTc201bO9i1FCHBRVS`): só identidade (logotipos, paleta,
+tipografia, ícones), o manifesto "A pedra não reveste. Ela define o lugar." e
+as 6 fotografias de ambiente em `site/assets/img/marca/`.
 
-- 41 fotografias de obra, em 6 aplicações (`REVESTIMENTOS`, `PISOS`,
-  `MUROS E MURETAS`, `ESCADAS`, `CAMINHOS`, `CALÇAMENTOS E ESCADAS`).
-- Os nomes das pedras vêm dos próprios arquivos, sem alteração.
-- Quando o nome do arquivo repetia a aplicação (`Pedra_Granito_Escadas`), o
-  sufixo virou o campo *aplicação* em vez de ser jogado fora — a informação
-  continua no site, só deixou de duplicar o título.
-- Isso revelou que **a mesma pedra aparece em várias aplicações**: são 33 pedras
-  distintas em 41 obras. Essas repetições viraram a galeria das páginas de
-  produto, não produtos separados.
+### O que foi retirado
 
-### O que o material não informa
+O Figma trazia dados de exemplo que não são reais, e nenhum deles está no site:
+as quatro coleções (Alvenaria seca, Travertino Romano, Mármore Grafite, Calcário
+escovado) e seus preços, o processo em 4 etapas, a garantia de 5 anos, o prazo
+de 48h, "desde 1998", as praças São Paulo · Vitória, o telefone
+`+55 11 4000-0000`, o CNPJ `00.000.000/0001-00` e o e-mail. `build/audit.mjs`
+falha se algum desses voltar.
 
-Para as 33 pedras do acervo não há material, dimensão, espessura nem
-acabamento em lugar nenhum do material fornecido. O site diz **"sob consulta"**
-nesses campos, em itálico esmaecido, e remete ao processo. Nenhuma
-especificação foi preenchida por suposição.
+### O que está pendente
 
-Pelo mesmo motivo, a coleção **Calcário escovado** — nomeada no rodapé do Figma,
-sem card nem descrição — aparece com o nome, o preço ("sob consulta") e uma
-linha explicando que a ficha está sob consulta, em vez de uma descrição
-inventada.
+Os canais de contato estão em `null` em `build/data.mjs` → `brand`: `telefone`,
+`telefoneLink`, `whatsapp`, `email`, `endereco`, `horario`, `cnpj`. Enquanto
+estiverem vazios, a página de contato mostra "a definir", o botão de pedido por
+e-mail e o botão flutuante do WhatsApp não aparecem. Preenchido o campo, o
+canal volta sozinho no próximo build.
 
-Telefone, CNPJ e domínio são os valores de exemplo do próprio Figma
-(`+55 11 4000-0000`, `00.000.000/0001-00`, `magahminerale.com.br`). Troque em
-`build/data.mjs` → `brand` quando os reais existirem.
-
-Os únicos textos que não vêm do Figma são de interface: a nota ao lado do botão
-de orçamento ("Abre seu e-mail com o pedido pronto…") e o "Ou fale direto:".
-Estão marcados em `build/data.mjs` → `orcamento`.
+Na tabela, a espessura do **Pedra Granito Rústico** em Escadas está marcada
+"x"; o site mostra "não informada". O `dominio` (canonical, og:image, sitemap)
+também é o de exemplo.
 
 ---
 
@@ -87,12 +77,8 @@ entregaria borrão. Daí o partido: retratos em composição assimétrica com mu
 espaço negativo, e não fotos sangradas de ponta a ponta. O hero usa a única
 imagem grande (1023 × 1537) numa placa alta que sangra à direita.
 
-O exemplar de travertino, fotografado sobre fundo claro, ganha uma placa clara
-(`.plate--especime`) para ler como *amostra de material* em vez de erro de
-recorte no meio das fotos escuras.
-
-**Narrativa.** `marca → matéria → coleções → aplicações → acervo → processo →
-contato`, com a faixa de orçamento fechando toda página.
+**Narrativa.** `marca → matéria → aplicações → acervo → contato`, com a faixa
+de orçamento fechando toda página.
 
 **Regras do vault.** O projeto segue as leis gerais do vault Obsidian (Bíblia de
 UI, Bíblia do Diretor de Arte, Motion Premium e os componentes do template
@@ -117,17 +103,15 @@ está registrada no ADR Log da pasta `magah/` do vault:
 
 ---
 
-## 3. Páginas (50)
+## 3. Páginas (45)
 
 ```
 index.html                    home
-colecoes.html                 as 4 famílias
-colecoes/<slug>.html          4 páginas de coleção
-aplicacoes.html               as 6 aplicações
+aplicacoes.html               as 6 tipologias do quadro
 aplicacoes/<slug>.html        6 páginas de aplicação
 acervo.html                   33 pedras, com filtro por aplicação
-acervo/<slug>.html            33 páginas de pedra
-processo.html  sobre.html  contato.html  404.html
+acervo/<slug>.html            33 páginas de pedra, com a ficha do quadro
+sobre.html  contato.html  404.html
 sitemap.xml  robots.txt
 ```
 
@@ -165,8 +149,8 @@ usa programa de e-mail.
 ## 5. Build
 
 ```bash
-node build/build.mjs    # gera as 50 páginas em site/
-node build/audit.mjs    # links, alt, títulos, ids, aria, movimento e formato das imagens — sai 1 se houver erro
+node build/build.mjs    # gera as 45 páginas em site/
+node build/audit.mjs    # links, alt, títulos, ids, aria, movimento, imagens e conteúdo de exemplo — sai 1 se houver erro
 python build/images.py  # reprocessa as imagens (só se as fotos mudarem)
 ```
 
@@ -200,5 +184,6 @@ build/
 site/           o site pronto
 ```
 
-Para mudar texto, preço ou ordem, edite `build/data.mjs` e rode `build.mjs` —
-nunca o HTML gerado.
+Para mudar texto, pedra ou contato, edite `build/data.mjs` e rode `build.mjs` —
+nunca o HTML gerado. O build não apaga páginas antigas: ao renomear ou remover
+uma pedra, apague o `.html` que sobrou em `site/`.

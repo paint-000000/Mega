@@ -151,6 +151,24 @@ for (const rel of lista) {
   }
 }
 
+/* ---- conteúdo de exemplo que não pode voltar -------------------------- */
+/* A Magah vende só o que está no quadro de produtos; os dados de exemplo do
+   Figma não são reais. */
+const PROIBIDOS = [
+  /travertino/i, /m[aá]rmore/i, /calc[aá]rio/i, /alvenaria/i, /cole[cç][oõ]es?\b/i,
+  /4000-0000/, /00\.000\.000/, /1998/, /48\s?h/i, /garantia/i, /vit[oó]ria/i,
+  /processo\.html/,
+];
+for (const rel of lista) {
+  const texto = readFileSync(join(SITE, rel), 'utf8')
+    .replace(/<svg[\s\S]*?<\/svg>/g, '')
+    .replace(/(?:src|srcset|imagesrcset|content|style)="[^"]*"/g, '');
+  for (const re of PROIBIDOS) {
+    const m = texto.match(re);
+    if (m) erro(rel, `conteúdo fora do quadro/de exemplo: "${m[0]}"`);
+  }
+}
+
 /* ---- cobertura do acervo ---------------------------------------------- */
 const manifesto = JSON.parse(readFileSync(join(HERE, 'images.json'), 'utf8'));
 const todoHtml = lista.map((r) => readFileSync(join(SITE, r), 'utf8')).join('\n');

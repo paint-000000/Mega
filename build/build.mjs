@@ -13,11 +13,11 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 import {
-  brand, colecoes, aplicacoes, pedras, processo, usos,
+  brand, aplicacoes, pedras,
   aplicacoesCopy, orcamento, indicadores, img,
 } from './data.mjs';
-import { icons, arrow } from './icons.mjs';
-import { page, plate, lines, btn, esc, crumbs, breadcrumbSchema } from './layout.mjs';
+import { arrow } from './icons.mjs';
+import { page, plate, lines, btn, esc, crumbs, breadcrumbSchema, canais, pendente, whatsappHref } from './layout.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SITE = join(HERE, '..', 'site');
@@ -51,11 +51,27 @@ function pedidoPorEmail(interesse) {
  * (ADR-002 no vault).
  */
 function acaoPedido(id, interesse = null) {
+  // Sem e-mail, o pedido vai pelo WhatsApp com a mensagem pronta.
+  if (!brand.email && brand.whatsapp) {
+    return `
+          <div class="pedido">
+            <a class="btn btn--primary btn--lg" href="${esc(whatsappHref())}" target="_blank" rel="noopener"
+               aria-describedby="${id}-nota">Chamar no WhatsApp${arrow}</a>
+            <p class="pedido__nota" id="${id}-nota">Abre o WhatsApp com a mensagem pronta, em nova aba.</p>
+          </div>`;
+  }
+  // Sem canal nenhum, o botão não tem para onde mandar: a página diz que falta.
+  if (!brand.email) {
+    return `
+          <div class="pedido">
+            <p class="pedido__nota">${pendente(orcamento.pendente)}</p>
+          </div>`;
+  }
   return `
           <div class="pedido">
             <a class="btn btn--primary btn--lg" href="${esc(pedidoPorEmail(interesse))}"
                aria-describedby="${id}-nota">${orcamento.botao}${arrow}</a>
-            <p class="pedido__nota" id="${id}-nota">${orcamento.nota} ${orcamento.ajuda}.</p>
+            <p class="pedido__nota" id="${id}-nota">${orcamento.nota}</p>
           </div>`;
 }
 
@@ -75,10 +91,9 @@ function faixaOrcamento(base, { id = 'orcamento', interesse = null } = {}) {
           <h2 class="h2" id="${id}-t">${lines(orcamento.titulo)}</h2>
           <p class="lead">${orcamento.texto}</p>
           ${acaoPedido(id, interesse)}
-          <p class="cta__canais">${orcamento.direto}
-            <a class="link-simple" href="mailto:${brand.email}">${brand.email}</a>
-            <span aria-hidden="true">·</span>
-            <a class="link-simple" href="tel:${brand.telefoneLink}">${brand.telefone}</a></p>
+          ${canais().length
+            ? `<p class="cta__canais">Ou fale direto: ${canais().map((c) => c.html).join(' <span aria-hidden="true">·</span> ')}</p>`
+            : ''}
         </div>
       </div>
     </div>
@@ -106,29 +121,25 @@ function gradeCategorias(base, { destaque = null, nivel = 3 } = {}) {
     .join('')}</div>`;
 }
 
-/** As quatro etapas do processo, em cartões. */
-function passos() {
-  return `
-      <div class="steps">
-        ${processo.map((e) => `
-        <article class="step">
-          <span class="step__icon">${icons[e.icone]}</span>
-          <span class="step__n">${e.n}</span>
-          <h3 class="h4">${e.titulo}</h3>
-          <p>${e.texto}</p>
-        </article>`).join('')}
-      </div>`;
-}
-
-/** Cartão de pedra usado no acervo e nas listas relacionadas. */
-function cartaoPedra(p, base, i = 0, nivel = 3) {
+/**
+ * Cartão de pedra usado no acervo e nas listas relacionadas. A foto tem de ser
+ * da aplicação em que o cartão aparece: sob o filtro Escadas, a foto da escada,
+ * não a do revestimento. Com `aplicacao`, o cartão leva só essa foto; sem ela
+ * (acervo), leva uma por aplicação e o filtro em site.js mostra a que bate.
+ */
+function cartaoPedra(p, base, i = 0, nivel = 3, aplicacao = null) {
+  const fotos = aplicacao ? p.fotos.filter((f) => f.aplicacao === aplicacao) : p.fotos;
+  const capas = fotos.map((f, n) => `
+    <div class="pedra-card__capa" data-capa="${f.aplicacaoSlug}"${n ? ' hidden' : ''}>
+    ${plate(f.key, {
+      base, alt: `${p.nome} — ${f.aplicacao.toLowerCase()}`, ratio: '4x5',
+      sizes: '(max-width: 640px) 92vw, (max-width: 1080px) 46vw, 23vw',
+    })}
+    </div>`).join('');
   return `
   <a class="pedra-card" href="${base}${p.href}" data-reveal style="--i:${i % 4}"
      data-aplicacoes="${p.aplicacoes.map((a) => slugSimples(a)).join(' ')}">
-    ${plate(p.capa, {
-      base, alt: `${p.nome} — ${p.fotos[0].aplicacao.toLowerCase()}`, ratio: '4x5',
-      sizes: '(max-width: 640px) 92vw, (max-width: 1080px) 46vw, 23vw',
-    })}
+    ${capas}
     <h${nivel} class="pedra-card__name">${p.nome}</h${nivel}>
     <p class="pedra-card__meta">
       <span>${p.aplicacoes.join(' · ')}</span>
@@ -145,7 +156,7 @@ const slugSimples = (s) =>
 function prevNext(lista, idx, base, rotulo) {
   const ant = lista[(idx - 1 + lista.length) % lista.length];
   const prox = lista[(idx + 1) % lista.length];
-  const href = (x) => base + (x.href || `colecoes/${x.slug}.html`);
+  const href = (x) => base + x.href;
   return `
   <nav class="prevnext" aria-label="${rotulo}">
     <a href="${href(ant)}"><span class="caption">Anterior</span><span class="h4">${ant.nome}</span></a>
@@ -167,7 +178,7 @@ function home() {
       <p class="lead">${brand.intro}</p>
       <div class="hero__ctas">
         <a class="btn btn--primary btn--lg" href="#orcamento">Solicitar orçamento${arrow}</a>
-        <a class="btn btn--secondary btn--lg" href="colecoes.html">Ver coleções${arrow}</a>
+        <a class="btn btn--secondary btn--lg" href="acervo.html">Ver as pedras${arrow}</a>
       </div>
     </div>
     <div class="hero__media">
@@ -187,8 +198,7 @@ function home() {
         <div>
           <p class="overline" data-reveal>A matéria</p>
           <h2 class="intro__lede mt-lg" id="materia-t" data-reveal style="--i:1">
-            ${brand.assinatura.replace('Extração, corte e instalação própria.',
-              '<span class="accent-italic">Extração, corte e instalação própria.</span>')}
+            ${brand.assinatura} <span class="accent-italic">${aplicacoes.length} tipologias, ${pedras.length} pedras.</span>
           </h2>
           <dl class="figures">
             ${indicadores.map((n) => `<div><dt>${n.valor}</dt><dd>${n.rotulo}</dd></div>`).join('')}
@@ -198,28 +208,11 @@ function home() {
           <div data-reveal="mask">
             ${plate('marca/alvenaria-seca', {
               base, ratio: 'tall', parallax: '0.05',
-              alt: 'Detalhe de parede em alvenaria seca: blocos irregulares encaixados, junta fechada',
+              alt: 'Detalhe de parede em pedra natural: blocos irregulares encaixados',
               sizes: '(max-width: 860px) 92vw, 40vw',
             })}
           </div>
-          <figcaption class="caption">Alvenaria seca — bloco irregular, junta fechada.</figcaption>
         </figure>
-      </div>
-    </div>
-  </section>`;
-
-  const secColecoes = `
-  <section class="section section--sunken" aria-labelledby="col-t">
-    <div class="shell">
-      <div class="section-head">
-        <div class="section-head__txt">
-          <p class="overline" data-reveal>Coleções</p>
-          <h2 class="h2" id="col-t" data-reveal style="--i:1">Quatro famílias, uma mesma exigência de bloco.</h2>
-        </div>
-        <a class="btn btn--ghost" href="colecoes.html">Ver coleções${arrow}</a>
-      </div>
-      <div>
-        ${colecoes.map((c, i) => blocoColecao(c, i, base)).join('')}
       </div>
     </div>
   </section>`;
@@ -231,7 +224,7 @@ function home() {
         <div class="split__media" data-reveal="mask">
           ${plate('marca/estar-alvenaria', {
             base, ratio: '', parallax: '0.04',
-            alt: 'Sala de estar com parede inteira em alvenaria seca, poltrona e ripado de madeira',
+            alt: 'Sala de estar com parede inteira em pedra natural, poltrona e ripado de madeira',
             sizes: '(max-width: 900px) 100vw, 50vw',
           })}
         </div>
@@ -240,7 +233,7 @@ function home() {
           <h2 class="h2" id="apl-t" data-reveal style="--i:1">${aplicacoesCopy.titulo}</h2>
           <p class="body">${aplicacoesCopy.texto}</p>
           <div class="tag-row">
-            ${usos.map((u) => `<span class="tag">${u}</span>`).join('')}
+            ${aplicacoes.map((a) => `<a class="tag" href="${a.href}">${a.nome}</a>`).join('')}
           </div>
           ${btn('Ver aplicações', 'aplicacoes.html')}
         </div>
@@ -262,20 +255,6 @@ function home() {
     </div>
   </section>`;
 
-  const secProcesso = `
-  <section class="section section--sunken" aria-labelledby="pro-t">
-    <div class="shell">
-      <div class="section-head">
-        <div class="section-head__txt">
-          <p class="overline" data-reveal>Processo</p>
-          <h2 class="h2" id="pro-t" data-reveal style="--i:1">Quatro etapas entre o projeto e a pedra assentada.</h2>
-        </div>
-        <a class="btn btn--ghost" href="processo.html">Ver o processo${arrow}</a>
-      </div>
-      ${passos()}
-    </div>
-  </section>`;
-
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -286,14 +265,10 @@ function home() {
         alternateName: brand.nome,
         url: brand.dominio,
         logo: `${brand.dominio}/assets/brand/logo-empilhado.svg`,
-        foundingDate: String(brand.desde),
         description: brand.assinatura,
-        email: brand.email,
-        telephone: brand.telefone,
+        ...(brand.email ? { email: brand.email } : {}),
+        ...(brand.telefone ? { telephone: brand.telefone } : {}),
         areaServed: 'BR',
-        address: ['São Paulo', 'Vitória'].map((c) => ({
-          '@type': 'PostalAddress', addressLocality: c, addressCountry: 'BR',
-        })),
       },
       {
         '@type': 'WebSite',
@@ -308,208 +283,13 @@ function home() {
 
   return page({
     title: `${brand.nome} — Pedra natural para arquitetura`,
-    description:
-      'Blocos brutos, alvenaria seca e superfícies minerais selecionadas bloco a bloco, ' +
-      'com fornecimento e instalação próprios para arquitetura residencial.',
+    description: brand.intro,
     path: 'index.html',
     active: '',
     depth: 0,
     preload: 'marca/residencia-encosta',
     schema,
-    body: hero + materia + secColecoes + secAplicacoes + secAcervo + secProcesso + faixaOrcamento(base),
-  });
-}
-
-/** Bloco editorial de uma coleção — o CSS alterna lado e largura. */
-function blocoColecao(c, i, base, nivel = 3) {
-  const n = String(i + 1).padStart(2, '0');
-  const ritmo = i % 3;
-  const ratio = c.especime ? '1x1' : ritmo === 2 ? '4x5' : '3x2';
-  return `
-  <article class="colecao plate-hover" data-ritmo="${ritmo}">
-    <div class="colecao__media" data-reveal="mask">
-      <a href="${base}colecoes/${c.slug}.html" tabindex="-1" aria-hidden="true">
-        ${plate(c.imagem, {
-          base, alt: c.alt, ratio, cls: c.especime ? 'plate--especime' : '',
-          sizes: '(max-width: 860px) 92vw, 52vw',
-        })}
-      </a>
-    </div>
-    <div class="colecao__body">
-      <p class="colecao__index" data-reveal>Coleção ${n}</p>
-      <h${nivel} class="h3" data-reveal style="--i:1"><a href="${base}colecoes/${c.slug}.html">${c.nome}</a></h${nivel}>
-      ${c.descricao ? `<p class="body">${c.descricao}</p>` : ''}
-      <p class="colecao__price mt-lg">${c.preco}</p>
-      ${btn('Conhecer coleção', `${base}colecoes/${c.slug}.html`, 'ghost')}
-    </div>
-  </article>`;
-}
-
-/* ============================================================== COLEÇÕES */
-
-function paginaColecoes() {
-  const base = '';
-  const body = `
-  <section class="section" aria-labelledby="t">
-    <div class="shell">
-      ${crumbs([{ label: 'Início', href: 'index.html' }, { label: 'Coleções' }], base)}
-      <div class="section-head mt-xl">
-        <div class="section-head__txt">
-          <p class="overline">Coleções</p>
-          <h1 class="h1" id="t">Quatro famílias, uma mesma exigência de bloco.</h1>
-        </div>
-        <p class="body max-45">${aplicacoesCopy.texto}</p>
-      </div>
-      ${colecoes.map((c, i) => blocoColecao(c, i, base, 2)).join('')}
-    </div>
-  </section>
-
-  <section class="section section--sunken section--tight" aria-labelledby="ac">
-    <div class="shell">
-      <div class="section-head">
-        <div class="section-head__txt">
-          <p class="overline" data-reveal>Acervo</p>
-          <h2 class="h2" id="ac" data-reveal style="--i:1">Além das quatro famílias, ${pedras.length} pedras em obra.</h2>
-        </div>
-        <a class="btn btn--ghost" href="acervo.html">Percorrer o acervo${arrow}</a>
-      </div>
-      ${gradeCategorias(base)}
-    </div>
-  </section>
-  ${faixaOrcamento(base)}`;
-
-  return page({
-    title: `Coleções — ${brand.nome}`,
-    description: 'Alvenaria seca, Travertino Romano, Mármore Grafite e Calcário escovado: as quatro famílias de pedra natural da Magah Minerale.',
-    path: 'colecoes.html',
-    active: 'colecoes.html',
-    depth: 0,
-    ogImage: 'marca/alvenaria-seca',
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      name: 'Coleções',
-      inLanguage: 'pt-BR',
-      mainEntity: {
-        '@type': 'ItemList',
-        numberOfItems: colecoes.length,
-        itemListElement: colecoes.map((c, i) => ({
-          '@type': 'ListItem', position: i + 1, name: c.nome,
-          url: `${brand.dominio}/colecoes/${c.slug}.html`,
-        })),
-      },
-    },
-    body,
-  });
-}
-
-function paginaColecao(c, idx) {
-  const base = '../';
-  const trilha = [
-    { label: 'Início', href: 'index.html', path: 'index.html' },
-    { label: 'Coleções', href: 'colecoes.html', path: 'colecoes.html' },
-    { label: c.nome, path: `colecoes/${c.slug}.html` },
-  ];
-
-  const preco = c.preco.match(/R\$\s*([\d.]+)/);
-  const schema = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'Product',
-        name: c.nome,
-        category: c.etiqueta,
-        brand: { '@type': 'Brand', name: brand.nome },
-        image: `${brand.dominio}/${img[c.imagem].base}-${img[c.imagem].widths.at(-1)}.webp`,
-        ...(c.descricao ? { description: c.descricao } : {}),
-        ...(preco
-          ? { offers: { '@type': 'AggregateOffer', priceCurrency: 'BRL',
-                        lowPrice: Number(preco[1].replace('.', '')),
-                        availability: 'https://schema.org/InStock' } }
-          : {}),
-      },
-      breadcrumbSchema(trilha),
-    ],
-  };
-
-  const ambiente = c.ambiente
-    ? `
-  <section class="section section--tight" aria-labelledby="amb">
-    <div class="shell">
-      <div class="split">
-        <div class="split__media" data-reveal="mask">
-          ${plate(c.ambiente, {
-            base, ratio: '', parallax: '0.04', alt: c.altAmbiente,
-            sizes: '(max-width: 900px) 100vw, 50vw',
-          })}
-        </div>
-        <div class="split__body">
-          <p class="overline" data-reveal>Em obra</p>
-          <h2 class="h2" id="amb" data-reveal style="--i:1">${aplicacoesCopy.titulo}</h2>
-          <p class="body">${aplicacoesCopy.texto}</p>
-          <div class="tag-row">
-            ${usos.map((u) => `<span class="tag">${u}</span>`).join('')}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>`
-    : '';
-
-  const body = `
-  <section class="shell prod-hero" aria-labelledby="t">
-    <div>
-      ${crumbs(trilha, base)}
-      <p class="overline mt-xl">${c.etiqueta}</p>
-      <h1 class="h1" id="t">${c.nome}</h1>
-      ${c.descricao
-        ? `<p class="lead">${c.descricao}</p>`
-        : `<p class="lead muted">Família nomeada no catálogo. Descrição e ficha técnica sob consulta.</p>`}
-      <p class="colecao__price mt-lg">${c.preco}</p>
-      <div class="prod-hero__ctas">
-        <a class="btn btn--primary btn--lg" href="${base}contato.html">Solicitar informações${arrow}</a>
-        <a class="btn btn--secondary btn--lg" href="${base}acervo.html">Percorrer o acervo${arrow}</a>
-      </div>
-    </div>
-    <div class="prod-hero__media">
-      ${plate(c.imagem, {
-        base, alt: c.alt, ratio: c.especime ? '1x1' : '4x5', eager: true,
-        cls: c.especime ? 'plate--especime' : '',
-        sizes: '(max-width: 860px) 92vw, 42vw',
-      })}
-    </div>
-  </section>
-
-  <section class="section section--tight" aria-labelledby="ficha-t">
-    <div class="shell">
-      <h2 class="overline" id="ficha-t" data-reveal>Ficha</h2>
-      <dl class="ficha mt-lg">
-        <div><dt>Família</dt><dd>${c.nome}</dd></div>
-        <div><dt>Classificação</dt><dd>${c.etiqueta}</dd></div>
-        <div><dt>Referência</dt><dd>${c.preco}</dd></div>
-        <div><dt>Dimensões e acabamento</dt><dd class="is-open">sob consulta</dd></div>
-      </dl>
-      <p class="caption mt-lg max-52">Espessuras, formatos e acabamentos são definidos na leitura de projeto —
-        veja o <a class="link-simple" href="${base}processo.html">processo</a>.</p>
-    </div>
-  </section>
-  ${ambiente}
-
-  <section class="section section--tight">
-    <div class="shell">${prevNext(colecoes, idx, base, 'Outras coleções')}</div>
-  </section>
-  ${faixaOrcamento(base, { interesse: `Coleção de interesse: ${c.nome}` })}`;
-
-  return page({
-    title: `${c.nome} — Coleções — ${brand.nome}`,
-    description: c.descricao || `${c.nome}: família de pedra natural da ${brand.nome}. ${c.preco}.`,
-    path: `colecoes/${c.slug}.html`,
-    active: 'colecoes.html',
-    depth: 1,
-    ogImage: c.imagem,
-    preload: c.imagem,
-    schema,
-    body,
+    body: hero + materia + secAplicacoes + secAcervo + faixaOrcamento(base),
   });
 }
 
@@ -529,16 +309,13 @@ function paginaAplicacoes() {
         <p class="body max-45">${aplicacoesCopy.texto}</p>
       </div>
       ${gradeCategorias(base, { nivel: 2 })}
-      <div class="tag-row mt-2xl">
-        ${usos.map((u) => `<span class="tag tag--dot">${u}</span>`).join('')}
-      </div>
     </div>
   </section>
   ${faixaOrcamento(base)}`;
 
   return page({
     title: `Aplicações — ${brand.nome}`,
-    description: `${aplicacoesCopy.titulo} Revestimentos, pisos, muros, escadas, caminhos e calçamentos em pedra natural.`,
+    description: `${aplicacoesCopy.titulo} Revestimentos, pisos, muros e muretas, escadas, caminhos e praças e calçamentos e estradas em pedra natural.`,
     path: 'aplicacoes.html',
     active: 'aplicacoes.html',
     depth: 0,
@@ -668,8 +445,8 @@ function paginaAcervo() {
           <h1 class="h1" id="t">${pedras.length} pedras, ${aplicacoes.reduce((s, a) => s + a.fotos.length, 0)} obras.</h1>
         </div>
         <div>
-          <p class="body max-45">Cada pedra do acervo registrada na obra em que foi assentada.
-            Espessuras, formatos e acabamentos são definidos por projeto.</p>
+          <p class="body max-45">Cada pedra registrada na obra em que foi assentada, com cor,
+            tamanho, espessura e unidade de venda por aplicação.</p>
           <p class="caption mt-lg" role="status" data-contagem>${plural(pedras.length, 'pedra', 'pedras')}</p>
         </div>
       </div>
@@ -682,7 +459,7 @@ function paginaAcervo() {
 
   return page({
     title: `Acervo — ${brand.nome}`,
-    description: `${pedras.length} pedras naturais registradas em obra: revestimentos, pisos, muros e muretas, escadas, caminhos e calçamentos.`,
+    description: `${pedras.length} pedras naturais registradas em obra: revestimentos, pisos, muros e muretas, escadas, caminhos e praças, calçamentos e estradas.`,
     path: 'acervo.html',
     active: 'acervo.html',
     depth: 0,
@@ -714,7 +491,7 @@ function paginaPedra(p, idx) {
   ];
 
   const relacionadas = pedras
-    .filter((o) => o.slug !== p.slug && o.aplicacoes.some((a) => p.aplicacoes.includes(a)))
+    .filter((o) => o.slug !== p.slug && o.aplicacoes.includes(p.aplicacoes[0]))
     .slice(0, 4);
 
   const galeria = p.fotos.length > 1
@@ -740,19 +517,18 @@ function paginaPedra(p, idx) {
   <section class="shell prod-hero" aria-labelledby="t">
     <div>
       ${crumbs(trilha, base)}
-      <p class="overline mt-xl">Acervo · ref. ${p.refs.join(' / ')}</p>
+      <p class="overline mt-xl">Acervo</p>
       <h1 class="h1" id="t">${p.nome}</h1>
       <div class="tag-row mt-lg">
         ${p.aplicacoes.map((a) => `<a class="tag tag--dot" href="${base}aplicacoes/${slugSimples(a)}.html">${a}</a>`).join('')}
       </div>
       <p class="body mt-lg muted">
-        ${p.fotos.length > 1
-          ? `Registrada em ${plural(p.fotos.length, 'obra', 'obras')}, em ${p.aplicacoes.length} aplicações diferentes.`
-          : `Registrada em obra na aplicação ${p.aplicacoes[0].toLowerCase()}.`}
-        Dimensões, espessura e acabamento sob consulta.
+        ${p.linhas.length > 1
+          ? `Vendida em ${p.aplicacoes.length} aplicações. A ficha abaixo traz cor, tamanho, espessura e unidade de cada uma.`
+          : `${p.linhas[0].cor} · ${p.linhas[0].tamanho} · vendida por ${p.linhas[0].unidade.toLowerCase() === 'm²' ? 'm²' : p.linhas[0].unidade.toLowerCase()}.`}
       </p>
       <div class="prod-hero__ctas">
-        <a class="btn btn--primary btn--lg" href="${base}contato.html">Solicitar ficha técnica${arrow}</a>
+        <a class="btn btn--primary btn--lg" href="${base}contato.html">Solicitar orçamento${arrow}</a>
         <a class="btn btn--secondary btn--lg" href="${base}acervo.html">Percorrer o acervo${arrow}</a>
       </div>
     </div>
@@ -768,18 +544,16 @@ function paginaPedra(p, idx) {
   <section class="section section--tight" aria-labelledby="ficha">
     <div class="shell">
       <h2 class="overline" id="ficha" data-reveal>Ficha</h2>
-      <dl class="ficha mt-lg">
-        <div><dt>Pedra</dt><dd>${p.nome}</dd></div>
-        <div><dt>Aplicações</dt><dd>${p.aplicacoes.join(', ')}</dd></div>
-        <div><dt>Referência</dt><dd>${p.refs.join(' / ')}</dd></div>
-        <div><dt>Obras registradas</dt><dd>${p.fotos.length}</dd></div>
-        <div><dt>Material</dt><dd class="is-open">sob consulta</dd></div>
-        <div><dt>Dimensões</dt><dd class="is-open">sob consulta</dd></div>
-        <div><dt>Espessura</dt><dd class="is-open">sob consulta</dd></div>
-        <div><dt>Acabamento</dt><dd class="is-open">sob consulta</dd></div>
-      </dl>
-      <p class="caption mt-lg max-52">A especificação é fechada na leitura de projeto, antes do corte —
-        veja o <a class="link-simple" href="${base}processo.html">processo</a>.</p>
+      ${p.linhas.map((l) => `
+      <div class="ficha-grupo mt-lg">
+        <h3 class="h4">${l.tipologia}</h3>
+        <dl class="ficha">
+          <div><dt>Cor / tonalidade</dt><dd>${l.cor}</dd></div>
+          <div><dt>Tamanho</dt><dd>${l.tamanho}</dd></div>
+          <div><dt>Espessura</dt>${l.espessura ? `<dd>${l.espessura}</dd>` : '<dd class="is-open">não informada</dd>'}</div>
+          <div><dt>Unidade de venda</dt><dd>${l.unidade}</dd></div>
+        </dl>
+      </div>`).join('')}
     </div>
   </section>
 
@@ -793,7 +567,7 @@ function paginaPedra(p, idx) {
         </div>
         <a class="btn btn--ghost" href="${base}acervo.html">Percorrer o acervo${arrow}</a>
       </div>
-      <div class="acervo-grid">${relacionadas.map((o, i) => cartaoPedra(o, base, i)).join('')}</div>
+      <div class="acervo-grid">${relacionadas.map((o, i) => cartaoPedra(o, base, i, 3, p.aplicacoes[0])).join('')}</div>
     </div>
   </section>` : ''}
 
@@ -819,7 +593,7 @@ function paginaPedra(p, idx) {
           category: p.aplicacoes.join(', '),
           brand: { '@type': 'Brand', name: brand.nome },
           image: p.fotos.map((f) => `${brand.dominio}/${img[f.key].base}-${img[f.key].widths.at(-1)}.webp`),
-          sku: p.refs.join('/'),
+          color: [...new Set(p.linhas.map((l) => l.cor))].join('; '),
         },
         breadcrumbSchema(trilha),
       ],
@@ -828,76 +602,7 @@ function paginaPedra(p, idx) {
   });
 }
 
-/* ======================================================= PROCESSO / SOBRE */
-
-function paginaProcesso() {
-  const base = '';
-  const etapas = processo
-    .map((e) => `
-    <article class="etapa">
-      <div class="etapa__n" aria-hidden="true"><span>${e.n}</span></div>
-      <div class="etapa__txt">
-        <span class="step__icon">${icons[e.icone]}</span>
-        <h2 class="h3">${e.titulo}</h2>
-        <p class="lead">${e.texto}</p>
-      </div>
-    </article>`)
-    .join('');
-
-  const body = `
-  <section class="section" aria-labelledby="t">
-    <div class="shell">
-      ${crumbs([{ label: 'Início', href: 'index.html' }, { label: 'Processo' }], base)}
-      <div class="section-head mt-xl">
-        <div class="section-head__txt">
-          <p class="overline">Processo</p>
-          <h1 class="h1" id="t">Quatro etapas entre o projeto e a pedra assentada.</h1>
-        </div>
-        <p class="body max-45">${aplicacoesCopy.texto}</p>
-      </div>
-      <div class="etapas">${etapas}</div>
-    </div>
-  </section>
-
-  <section class="section section--tight" aria-labelledby="gar">
-    <div class="shell">
-      <div class="split">
-        <div class="split__media" data-reveal="mask">
-          ${plate('marca/muro-noturno', {
-            base, ratio: '', parallax: '0.04',
-            alt: 'Muro de pedra iluminado por luz rasante, revelando o relevo de cada bloco',
-            sizes: '(max-width: 900px) 100vw, 50vw',
-          })}
-        </div>
-        <div class="split__body">
-          <p class="overline" data-reveal>Garantia</p>
-          <h2 class="h2" id="gar" data-reveal style="--i:1">Cinco anos sobre fixação e rejunte.</h2>
-          <p class="body">${processo[3].texto}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  ${faixaOrcamento(base)}`;
-
-  return page({
-    title: `Processo — ${brand.nome}`,
-    description: 'Leitura de projeto, seleção de bloco na pedreira, corte numerado e instalação com equipe própria e cinco anos de garantia.',
-    path: 'processo.html',
-    active: 'processo.html',
-    depth: 0,
-    ogImage: 'marca/muro-noturno',
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'HowTo',
-      name: 'Do projeto à pedra assentada',
-      inLanguage: 'pt-BR',
-      step: processo.map((e, i) => ({
-        '@type': 'HowToStep', position: i + 1, name: e.titulo, text: e.texto,
-      })),
-    },
-    body,
-  });
-}
+/* ================================================================= SOBRE */
 
 function paginaSobre() {
   const base = '';
@@ -927,36 +632,23 @@ function paginaSobre() {
     </div>
   </section>
 
-  <section class="section section--sunken section--tight" aria-labelledby="pr">
+  <section class="section section--sunken section--tight" aria-labelledby="ap">
     <div class="shell">
       <div class="section-head">
         <div class="section-head__txt">
-          <p class="overline" data-reveal>Processo</p>
-          <h2 class="h2" id="pr" data-reveal style="--i:1">Quatro etapas entre o projeto e a pedra assentada.</h2>
+          <p class="overline" data-reveal>Acervo</p>
+          <h2 class="h2" id="ap" data-reveal style="--i:1">Seis aplicações, ${pedras.length} pedras.</h2>
         </div>
-        <a class="btn btn--ghost" href="processo.html">Ver o processo${arrow}</a>
+        <a class="btn btn--ghost" href="acervo.html">Percorrer o acervo${arrow}</a>
       </div>
-      ${passos()}
-    </div>
-  </section>
-
-  <section class="section section--tight" aria-labelledby="pc">
-    <div class="shell">
-      <div class="section-head">
-        <div class="section-head__txt">
-          <p class="overline" data-reveal>Praças</p>
-          <h2 class="h2" id="pc" data-reveal style="--i:1">${brand.pracas}</h2>
-        </div>
-        <p class="body max-45">${brand.assinatura}
-          Atendimento ${brand.horario.toLowerCase()}.</p>
-      </div>
+      ${gradeCategorias(base)}
     </div>
   </section>
   ${faixaOrcamento(base)}`;
 
   return page({
     title: `Sobre — ${brand.nome}`,
-    description: `${brand.assinatura} Em atividade desde ${brand.desde}, com praças em São Paulo e Vitória.`,
+    description: `${brand.assinatura} ${pedras.length} pedras naturais em ${aplicacoes.length} tipologias.`,
     path: 'sobre.html',
     active: 'sobre.html',
     depth: 0,
@@ -980,16 +672,18 @@ function paginaContato() {
           ${acaoPedido('contato')}
 
           <dl class="ficha ficha--contato mt-2xl">
-            <div><dt>Telefone</dt><dd><a class="link-simple" href="tel:${brand.telefoneLink}">${brand.telefone}</a></dd></div>
-            <div><dt>E-mail</dt><dd><a class="link-simple" href="mailto:${brand.email}">${brand.email}</a></dd></div>
-            <div><dt>Praças</dt><dd>${brand.pracas}</dd></div>
-            <div><dt>Atendimento</dt><dd>${brand.horario}</dd></div>
+            ${[
+              ['WhatsApp', brand.whatsapp && `<a class="link-simple" href="${esc(whatsappHref())}" target="_blank" rel="noopener">${brand.whatsappExibicao}</a>`],
+              ['Instagram', brand.instagram && `<a class="link-simple" href="${brand.instagram}" target="_blank" rel="noopener">${brand.instagramUsuario}</a>`],
+              ['Telefone', brand.telefone && `<a class="link-simple" href="tel:${brand.telefoneLink}">${brand.telefone}</a>`],
+              ['E-mail', brand.email && `<a class="link-simple" href="mailto:${brand.email}">${brand.email}</a>`],
+            ].map(([dt, dd]) => `<div><dt>${dt}</dt>${dd ? `<dd>${dd}</dd>` : '<dd class="is-open">a definir</dd>'}</div>`).join('')}
           </dl>
         </div>
         <figure class="intro__media">
           ${plate('marca/estar-alvenaria', {
             base, ratio: 'tall', parallax: '0.05',
-            alt: 'Sala de estar com parede inteira em alvenaria seca',
+            alt: 'Sala de estar com parede inteira em pedra natural',
             sizes: '(max-width: 860px) 92vw, 40vw',
           })}
           <figcaption class="caption">${aplicacoesCopy.titulo}</figcaption>
@@ -1000,7 +694,7 @@ function paginaContato() {
 
   return page({
     title: `Contato — ${brand.nome}`,
-    description: `${orcamento.texto} ${brand.telefone} · ${brand.email}`,
+    description: `${orcamento.titulo.join(' ')} ${orcamento.texto}`,
     path: 'contato.html',
     active: '',
     depth: 0,
@@ -1012,8 +706,8 @@ function paginaContato() {
       mainEntity: {
         '@type': 'Organization',
         name: brand.nomeCompleto,
-        email: brand.email,
-        telephone: brand.telefone,
+        ...(brand.email ? { email: brand.email } : {}),
+        ...(brand.telefone ? { telephone: brand.telefone } : {}),
       },
     },
     body,
@@ -1049,13 +743,10 @@ function main() {
   const emitir = (rel, html) => { escreve(rel, html); rotas.push(rel); };
 
   emitir('index.html', home());
-  emitir('colecoes.html', paginaColecoes());
-  colecoes.forEach((c, i) => emitir(`colecoes/${c.slug}.html`, paginaColecao(c, i)));
   emitir('aplicacoes.html', paginaAplicacoes());
   aplicacoes.forEach((a, i) => emitir(a.href, paginaAplicacao(a, i)));
   emitir('acervo.html', paginaAcervo());
   pedras.forEach((p, i) => emitir(p.href, paginaPedra(p, i)));
-  emitir('processo.html', paginaProcesso());
   emitir('sobre.html', paginaSobre());
   emitir('contato.html', paginaContato());
   escreve('404.html', pagina404());

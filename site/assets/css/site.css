@@ -243,6 +243,9 @@ button, input, textarea, select { font: inherit; color: inherit; }
 /* Todo ícone carrega .ico: um <svg> sem width/height assume 300x150 e estoura
    o layout onde estiver. */
 .ico { width: 1em; height: 1em; flex: none; }
+/* Canal de contato: marca da rede no lugar do nome, nome só para leitor de tela. */
+.canal { display: inline-flex; align-items: center; gap: .5em; }
+.canal .ico { width: 18px; height: 18px; }
 .btn .ico { width: 16px; height: 16px; transition: transform var(--dur-fast) var(--ease); }
 
 .btn--lg { min-height: 56px; padding-inline: var(--sp-xl); font-size: var(--t-body); }
@@ -543,7 +546,16 @@ a:focus-visible > .plate img { transform: scale(1.02); filter: saturate(1) contr
   .header__actions { margin-left: auto; }
 }
 @media (min-width: 1081px) { .menu, .menu[hidden] { display: none; } }
-@media (max-width: 520px) { .header__actions .btn { display: none; } }
+/* No celular a barra só leva logo e menu: 76 px sobravam. 60 px ainda cabem o
+   alvo de toque de 44 px com respiro, e todo recuo que usa --header-h acompanha. */
+@media (max-width: 720px) {
+  :root { --header-h: 60px; }
+  .brand svg { width: 152px; }
+}
+@media (max-width: 520px) {
+  .header__actions { display: none; }
+  .burger { margin-left: auto; }
+}
 
 /* ------------------------------------------------------------------- hero */
 /* Composição assimétrica: o tipo ocupa a esquerda sobre o fundo da marca,
@@ -627,7 +639,8 @@ a:focus-visible > .plate img { transform: scale(1.02); filter: saturate(1) contr
     grid-template-columns: 1fr;
     min-height: 0;
     gap: 0;
-    padding-top: calc(var(--header-h) + var(--sp-sm));
+    /* a foto encosta na barra: sem a faixa escura entre as duas */
+    padding-top: var(--header-h);
     padding-left: var(--gutter);
     padding-right: var(--gutter);
   }
@@ -831,7 +844,7 @@ a:focus-visible > .plate img { transform: scale(1.02); filter: saturate(1) contr
 @media (hover: hover) and (pointer: fine) {
   .filtro:not([aria-pressed='true']):hover { border-color: var(--border-strong); color: var(--color-text); }
 }
-.pedra-card[hidden] { display: none; }
+.pedra-card[hidden], .pedra-card__capa[hidden] { display: none; }
 
 /* --------------------------------------------------------- página da pedra */
 .prod-hero {
@@ -863,7 +876,9 @@ a:focus-visible > .plate img { transform: scale(1.02); filter: saturate(1) contr
 .ficha > div { padding: var(--sp-lg) 0 var(--sp-xl); border-bottom: 1px solid var(--border-subtle); }
 .ficha dt { font-size: var(--t-label); letter-spacing: .09em; text-transform: uppercase; color: var(--color-muted); }
 .ficha dd { margin-top: var(--sp-xs); color: var(--color-text); font-size: var(--t-small); overflow-wrap: anywhere; }
-.ficha dd.is-open { color: var(--color-muted); font-style: italic; }
+.is-open { color: var(--color-muted); font-style: italic; }
+.ficha-grupo + .ficha-grupo { margin-top: var(--sp-2xl); }
+.ficha-grupo .ficha { margin-top: var(--sp-md); }
 
 /* ----------------------------------------------------------------- faixa CTA */
 .cta {

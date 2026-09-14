@@ -180,6 +180,10 @@
         const bate = chave === 'todas' || (c.dataset.aplicacoes || '').split(' ').includes(chave);
         c.hidden = !bate;
         if (bate) visiveis++;
+        // A foto do cartão acompanha o filtro; em "Todas", volta a primeira.
+        const capas = $$('[data-capa]', c);
+        const alvo = capas.find((f) => f.dataset.capa === chave) || capas[0];
+        capas.forEach((f) => { f.hidden = f !== alvo; });
       });
       filtros.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.filtro === chave)));
       if (contador) {
