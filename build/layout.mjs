@@ -96,7 +96,8 @@ export function canais() {
   return [
     brand.whatsapp && { rotulo: 'WhatsApp', html: `<a class="link-simple canal" href="${esc(whatsappHref())}" target="_blank" rel="noopener">${whatsapp}<span class="visually-hidden">WhatsApp</span>${brand.whatsappExibicao}</a>` },
     brand.instagram && { rotulo: 'Instagram', html: `<a class="link-simple canal" href="${brand.instagram}" target="_blank" rel="noopener">${instagram}<span class="visually-hidden">Instagram</span>${brand.instagramUsuario}</a>` },
-    brand.telefone && { rotulo: 'Telefone', html: `<a class="link-simple" href="tel:${brand.telefoneLink}">${brand.telefone}</a>` },
+    // Mesmo número do WhatsApp: na lista curta aparece uma vez só (a página de contato mostra os dois campos).
+    brand.telefone && brand.telefone !== brand.whatsappExibicao && { rotulo: 'Telefone', html: `<a class="link-simple" href="tel:${brand.telefoneLink}">${brand.telefone}</a>` },
     brand.email && { rotulo: 'E-mail', html: `<a class="link-simple" href="mailto:${brand.email}">${brand.email}</a>` },
     brand.endereco && { rotulo: 'Endereço', html: brand.endereco },
     brand.horario && { rotulo: 'Atendimento', html: brand.horario },

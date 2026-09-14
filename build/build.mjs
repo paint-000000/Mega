@@ -51,8 +51,8 @@ function pedidoPorEmail(interesse) {
  * (ADR-002 no vault).
  */
 function acaoPedido(id, interesse = null) {
-  // Sem e-mail, o pedido vai pelo WhatsApp com a mensagem pronta.
-  if (!brand.email && brand.whatsapp) {
+  // WhatsApp é o canal principal do pedido; o e-mail fica nos canais diretos.
+  if (brand.whatsapp) {
     return `
           <div class="pedido">
             <a class="btn btn--primary btn--lg" href="${esc(whatsappHref())}" target="_blank" rel="noopener"

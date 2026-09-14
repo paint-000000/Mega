@@ -44,11 +44,11 @@ export const brand = {
   whatsappMensagem: 'Olá! Vim pelo site da Magah Minerale e gostaria de falar sobre um projeto.',
   instagram: 'https://www.instagram.com/magah.minerale/',
   instagramUsuario: '@magah.minerale',
-  /* Pendentes — os valores do Figma eram de exemplo. Preencha com os reais
-     e o site volta a exibir cada canal. */
-  telefone: null,
-  telefoneLink: null,
-  email: null,
+  /* Canais reais passados pela Magah. Campo em null some da página (ou
+     aparece como "a definir" na página de contato). */
+  telefone: '(11) 93031-9070',
+  telefoneLink: '+5511930319070',
+  email: 'contato@magahminerale.com',
   endereco: null,
   horario: null,
   cnpj: null,
