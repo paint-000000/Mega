@@ -4,6 +4,7 @@
  * traz do Figma e das pastas de fotografia.
  */
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { brand, nav, img, aplicacoes } from './data.mjs';
@@ -11,6 +12,15 @@ import { arrow, whatsapp, instagram } from './icons.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SITE = join(HERE, '..', 'site');
+
+/* O GitHub Pages manda o navegador guardar CSS e JS por 10 minutos, e o Safari
+   do iPhone às vezes por mais: depois de um deploy a página nova chegava com o
+   estilo antigo. O `?v=` muda sempre que o arquivo muda, e o navegador baixa de
+   novo; quando nada muda, o cache continua valendo. */
+const versao = (rel) =>
+  createHash('sha1').update(readFileSync(join(SITE, rel))).digest('hex').slice(0, 8);
+const V_CSS = versao('assets/css/site.css');
+const V_JS = versao('assets/js/site.js');
 
 export const esc = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -226,7 +236,7 @@ export function page({
 <link rel="preload" as="font" type="font/woff2" href="${base}assets/fonts/bodoni-normal-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="${base}assets/fonts/inter-normal-latin.woff2" crossorigin>
 <link rel="stylesheet" href="${base}assets/fonts/fonts.css">
-<link rel="stylesheet" href="${base}assets/css/site.css">
+<link rel="stylesheet" href="${base}assets/css/site.css?v=${V_CSS}">
 ${preloadTag}
 <script>document.documentElement.classList.add('js')</script>
 ${schema ? `<script type="application/ld+json">${JSON.stringify(schema)}</script>` : ''}
@@ -239,7 +249,7 @@ ${body}
 </main>
 ${footer(base)}
 ${brand.whatsapp ? `<a class="whatsapp" href="${esc(whatsappHref())}" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp (abre em nova aba)">${whatsapp}<span class="whatsapp__rotulo">WhatsApp</span></a>` : ''}
-<script src="${base}assets/js/site.js" defer></script>
+<script src="${base}assets/js/site.js?v=${V_JS}" defer></script>
 </body>
 </html>`;
 }
