@@ -548,6 +548,13 @@ a:focus-visible > .plate img { transform: scale(1.02); filter: saturate(1) contr
 @media (min-width: 1081px) { .menu, .menu[hidden] { display: none; } }
 /* No celular a barra só leva logo e menu: 76 px sobravam. 60 px ainda cabem o
    alvo de toque de 44 px com respiro, e todo recuo que usa --header-h acompanha. */
+/* Barra sólida no celular. Translúcida, a foto aparecia por trás dela e, no
+   Safari do iPhone, também na faixa do relógio acima: o navegador pinta essa
+   faixa com a cor da barra fixa no topo, e só consegue se ela for opaca. */
+@media (max-width: 1080px) {
+  .header, .header.is-stuck { background: var(--color-background); backdrop-filter: none; }
+  .header::before { opacity: 0; }
+}
 @media (max-width: 720px) {
   :root { --header-h: 60px; }
   .brand svg { width: 152px; }
