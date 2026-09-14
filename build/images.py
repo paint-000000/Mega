@@ -39,6 +39,7 @@ LADDER = [420, 640, 960, 1280, 1600]
 QUALIDADE_WEBP = 76
 QUALIDADE_CARTAO = 82
 LARGURA_MAX_CARTAO = 1200  # prévia de link não mostra mais que isso
+PROPORCAO_CARTAO = 1200 / 630
 MATRIZES = (".webp", ".jpg", ".jpeg", ".png")
 
 
@@ -67,7 +68,10 @@ def lqip(im):
     return "data:image/webp;base64," + base64.b64encode(buf.getvalue()).decode()
 
 
-def emit(src_path, rel_dir, base_name):
+FUNDO_CARTAO = (0x12, 0x11, 0x10)  # --color-background do site
+
+
+def emit(src_path, rel_dir, base_name, cartao_inteiro=False):
     im = Image.open(src_path)
     im = ImageOps.exif_transpose(im).convert("RGB")
     sw, sh = im.size
@@ -83,9 +87,22 @@ def emit(src_path, rel_dir, base_name):
             frame = frame.filter(ImageFilter.UnsharpMask(radius=0.6, percent=58, threshold=3))
         frame.save(os.path.join(dest_dir, f"{base_name}-{w}.webp"), quality=QUALIDADE_WEBP, method=6)
 
-    cartao = im
-    if sw > LARGURA_MAX_CARTAO:
-        cartao = im.resize((LARGURA_MAX_CARTAO, round(sh * LARGURA_MAX_CARTAO / sw)), Image.LANCZOS)
+    # Cartão horizontal 1.91:1 — é a proporção que WhatsApp, iMessage, LinkedIn
+    # e Facebook desenham; foto em pé vira miniatura ou é cortada por eles.
+    # Sem ampliar: foto estreita dá cartão menor.
+    if cartao_inteiro:
+        # Fotos de obra: o assunto muda de lugar (a escada fotografada de cima
+        # fica no pé da foto), então nenhum corte fixo serve. A foto entra
+        # inteira, centrada sobre o fundo do site.
+        cw = LARGURA_MAX_CARTAO
+        ch = round(cw / PROPORCAO_CARTAO)
+        cartao = Image.new("RGB", (cw, ch), FUNDO_CARTAO)
+        foto = ImageOps.contain(im, (cw, ch), Image.LANCZOS) if sh > ch else im
+        cartao.paste(foto, ((cw - foto.width) // 2, (ch - foto.height) // 2))
+    else:
+        # Fotos da marca: corte um pouco acima do meio, onde fica a fachada.
+        cw = min(LARGURA_MAX_CARTAO, sw)
+        cartao = ImageOps.fit(im, (cw, round(cw / PROPORCAO_CARTAO)), Image.LANCZOS, centering=(0.5, 0.42))
     cartao.save(
         os.path.join(dest_dir, f"{base_name}-og.jpg"),
         quality=QUALIDADE_CARTAO, optimize=True, progressive=True,
@@ -125,7 +142,7 @@ def main():
         for f in files:
             stem = os.path.splitext(f)[0]
             key = "acervo/" + slugify(stem)
-            manifest[key] = emit(os.path.join(cat_dir, f), "acervo", slugify(stem))
+            manifest[key] = emit(os.path.join(cat_dir, f), "acervo", slugify(stem), cartao_inteiro=True)
             manifest[key]["source"] = f"{entry}/{f}"
 
     # --- 2. Fotografias vindas do Figma ------------------------------------
