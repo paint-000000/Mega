@@ -43,6 +43,40 @@ const resumo = (texto) => {
   return `${corte.slice(0, corte.lastIndexOf(' '))}…`;
 };
 
+/* ============================================================ texto de SEO */
+
+/* O que está no topo do Google para "pedras ornamentais" tem texto corrido,
+   perguntas frequentes e H1 que diz o que se vende. Aqui o texto sai só do
+   quadro de produtos e da ficha das cubas — nada inventado. */
+const listaNatural = (itens) =>
+  itens.length < 2 ? itens.join('') : `${itens.slice(0, -1).join(', ')} e ${itens.at(-1)}`;
+const unidadeTexto = (u) => (u === 'm²' ? 'm²' : u.toLowerCase());
+const linkPedra = (p, base) => `<a href="${base}${p.href}">${p.nome}</a>`;
+const pedrasDe = (tipologia) => pedras.filter((p) => p.aplicacoes.includes(tipologia));
+
+function perguntasFrequentes() {
+  const unidades = [...new Set(pedras.flatMap((p) => p.linhas.map((l) => unidadeTexto(l.unidade))))];
+  const nomes = (t) => listaNatural(pedrasDe(t).map((p) => p.nome));
+  return [
+    ['Quais pedras ornamentais a Magah Minerale vende?',
+      `São ${pedras.length} pedras naturais — moledos, lajões, granitos, São Tomé, Miracema, Atacama, pedra madeira, ` +
+      `rachão, folheta e paralelepípedos —${cubas.length ? ` e ${cubas.length} cubas esculpidas em pedra` : ''}. ` +
+      `Todas estão no acervo, com cor, tamanho, espessura e unidade de venda.`],
+    ['Como pedir um orçamento de pedra ornamental?',
+      `Pelo WhatsApp ${brand.whatsappExibicao}. Diga a pedra, a aplicação, a metragem ou quantidade e a cidade da obra.`],
+    ['Quais pedras servem para piso?', `No quadro de pisos estão ${nomes('Pisos')}.`],
+    ['Quais pedras servem para muro e mureta?', `Para muros e muretas: ${nomes('Muros e Muretas')}.`],
+    ['Quais pedras servem para revestir parede e fachada?', `Para revestimentos: ${nomes('Revestimentos')}.`],
+    ['Como as pedras são vendidas?',
+      `Depende da pedra e da aplicação: por ${listaNatural(unidades)}. A ficha de cada pedra mostra a unidade.`],
+    ...(cubas.length ? [['Qual o tamanho das cubas de pedra?',
+      `O padrão é ${cubasFicha.padrao}. Fora do padrão, analisamos caso a caso peças de até 90 cm.`]] : []),
+    [`A Magah Minerale atende em ${brand.regiao}?`,
+      `Sim. O atendimento é em ${brand.regiao}, pelo WhatsApp ${brand.whatsappExibicao}` +
+      `${brand.email ? ` ou pelo e-mail ${brand.email}` : ''}.`],
+  ];
+}
+
 /* ===================================================== blocos reutilizáveis */
 
 /** mailto com o pedido já escrito; `interesse` registra de qual página ele saiu. */
@@ -210,8 +244,8 @@ function home() {
   <section class="hero" aria-labelledby="hero-t">
     <div class="hero__glow" aria-hidden="true"></div>
     <div class="hero__copy">
-      <p class="overline">${brand.overline}</p>
-      <h1 class="display" id="hero-t">${lines(['A pedra não reveste.', 'Ela define o lugar.'], { revelar: false })}</h1>
+      <h1 class="overline" id="hero-t">${brand.overline}</h1>
+      <p class="display">${lines(['A pedra não reveste.', 'Ela define o lugar.'], { revelar: false })}</p>
       <p class="lead">${brand.intro}</p>
       <div class="hero__ctas">
         <a class="btn btn--primary btn--lg" href="#orcamento">Solicitar orçamento${arrow}</a>
@@ -292,9 +326,45 @@ function home() {
     </div>
   </section>`;
 
+  const faq = perguntasFrequentes();
+  const secGuia = `
+  <section class="section" aria-labelledby="guia-t">
+    <div class="shell guia">
+      <div>
+        <p class="overline" data-reveal>Guia</p>
+        <h2 class="h2 mt-lg" id="guia-t" data-reveal style="--i:1">Pedras ornamentais em ${brand.regiao}.</h2>
+        <p class="body mt-xl">A ${brand.nome} vende pedras ornamentais naturais em ${brand.regiao} para
+          ${listaNatural(aplicacoes.map((a) => `<a href="${a.href}">${a.nome.toLowerCase()}</a>`))}.
+          Cada pedra do acervo traz cor, tamanho, espessura e unidade de venda por aplicação.</p>
+        <p class="body">Para revestir paredes e fachadas, há moledos, pedra madeira, Atacama, Miracema e granito
+          mosaico. Para pisos, varandas e bordas de piscina, lajões como ${listaNatural(pedrasDe('Pisos').filter((p) => /Lajão/.test(p.nome)).map((p) => linkPedra(p, base)))}.
+          Para muros e muretas, ${listaNatural(pedrasDe('Muros e Muretas').map((p) => linkPedra(p, base)))}.
+          Para calçamento, ${listaNatural(pedrasDe('Calçamentos e Estradas').map((p) => linkPedra(p, base)))}.</p>
+        ${cubas.length ? `<p class="body">E ${cubas.length} <a href="acervo.html?a=cubas">cubas de pedra</a> para banheiro e lavabo,
+          esculpidas em peças únicas de ametista, quartzo, fluorita, sodalita, ônix, basalto, mármore e outras pedras.
+          Padrão ${cubasFicha.padrao}; sob medida até 90 cm.</p>` : ''}
+      </div>
+      <div class="faq">
+        <h2 class="h3" id="faq-t">Perguntas frequentes</h2>
+        ${faq.map(([q, r]) => `
+        <details>
+          <summary>${q}</summary>
+          <p>${r}</p>
+        </details>`).join('')}
+      </div>
+    </div>
+  </section>`;
+
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
+      {
+        '@type': 'FAQPage',
+        mainEntity: faq.map(([q, r]) => ({
+          '@type': 'Question', name: q,
+          acceptedAnswer: { '@type': 'Answer', text: r.replace(/<[^>]+>/g, '') },
+        })),
+      },
       {
         // Negócio local: o Google usa areaServed e o telefone para buscas "perto de mim" / "em SP".
         '@type': ['Organization', 'HomeAndConstructionBusiness'],
@@ -331,7 +401,7 @@ function home() {
     depth: 0,
     preload: 'marca/residencia-encosta',
     schema,
-    body: hero + materia + secAplicacoes + secAcervo + faixaOrcamento(base),
+    body: hero + materia + secAplicacoes + secAcervo + secGuia + faixaOrcamento(base),
   });
 }
 
@@ -422,6 +492,8 @@ function paginaAplicacao(a, idx) {
           <p class="caption mt-lg">${a.nome} · ${plural(a.fotos.length, 'obra registrada', 'obras registradas')}</p>
         </div>
       </div>
+      <p class="body max-45 mt-xl">${a.nome} em pedra ornamental natural, em ${brand.regiao}. ${a.linha}
+        Pedras do acervo para ${a.nome.toLowerCase()}: ${listaNatural(pedrasDe(a.nome).map((p) => linkPedra(p, base)))}.</p>
       <div class="obras">${obras}</div>
     </div>
   </section>
@@ -594,6 +666,11 @@ function paginaPedra(p, idx) {
   <section class="section section--tight" aria-labelledby="ficha">
     <div class="shell">
       <h2 class="overline" id="ficha" data-reveal>Ficha</h2>
+      <p class="body max-45 mt-lg">${p.nome} é uma pedra ornamental natural para
+        ${listaNatural(p.aplicacoes.map((a) => a.toLowerCase()))}, vendida pela ${brand.nome} em ${brand.regiao}.
+        ${p.linhas.map((l) => `Em ${l.tipologia.toLowerCase()}: ${l.cor.toLowerCase()}, ${l.tamanho.toLowerCase()}` +
+          `${l.espessura ? `, espessura ${l.espessura}` : ''}, vendida por ${unidadeTexto(l.unidade)}.`).join(' ')}
+        Para orçamento, diga a aplicação e a metragem pelo WhatsApp.</p>
       ${p.linhas.map((l) => `
       <div class="ficha-grupo mt-lg">
         <h3 class="h4">${l.tipologia}</h3>
@@ -709,6 +786,10 @@ function paginaCuba(c, idx) {
   <section class="section section--tight" aria-labelledby="ficha">
     <div class="shell">
       <h2 class="overline" id="ficha" data-reveal>Ficha</h2>
+      <p class="body max-45 mt-lg">A cuba ${c.nome} é uma cuba de pedra natural para banheiro
+        e lavabo, esculpida numa peça única de ${c.nome}: cor, veios e formato mudam de uma cuba para outra.
+        O tamanho padrão é ${cubasFicha.padrao}; fora do padrão, analisamos caso a caso peças de até 90 cm.
+        Atendimento em ${brand.regiao}, com orçamento pelo WhatsApp.</p>
       <div class="ficha-grupo mt-lg">
         <h3 class="h4">Medidas a consultar</h3>
         <dl class="ficha">

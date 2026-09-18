@@ -1123,3 +1123,23 @@ a:focus-visible > .plate img { transform: scale(1.02); filter: saturate(1) contr
 /* Cubas: fotos verticais de ambiente com a peça no terço de baixo; o recorte
    4:5 desce para a cuba não sair do quadro. */
 .plate--cuba img { object-position: 50% 72%; }
+
+/* Guia de pedras ornamentais + perguntas frequentes (home). Texto corrido é
+   o que o Google lê; os links levam às pedras e aplicações citadas. */
+.guia { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(var(--sp-xl), 5vw, var(--sp-4xl)); }
+@media (max-width: 900px) { .guia { grid-template-columns: 1fr; } }
+.guia .body + .body { margin-top: var(--sp-md); }
+.guia .body a, .obras + p a, .section-head + p a, p.body a:not(.btn) {
+  text-decoration: underline; text-underline-offset: .2em; text-decoration-color: var(--border-strong);
+}
+.faq .h3 { margin-bottom: var(--sp-md); }
+.faq details { border-bottom: 1px solid var(--border-subtle); }
+.faq summary {
+  display: flex; justify-content: space-between; align-items: center; gap: var(--sp-md);
+  min-height: var(--alvo-toque); padding-block: var(--sp-md); cursor: pointer; list-style: none;
+  color: var(--color-text);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: '+'; flex: none; color: var(--color-secondary); font-size: 1.25em; line-height: 1; }
+.faq details[open] summary::after { content: '−'; }
+.faq details p { padding-bottom: var(--sp-lg); color: var(--color-text-2); font-size: var(--t-small); max-width: 60ch; }
