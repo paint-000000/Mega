@@ -45,7 +45,9 @@ const resumo = (texto) => {
 
 /* ============================================================ texto de SEO */
 
-/* O que está no topo do Google para "pedras ornamentais" tem texto corrido,
+/* O ramo é o de pedras decorativas (pedra natural rústica, vendida por m², unidade ou
+   caminhão), não o de rochas ornamentais em chapa das marmorarias. O que está no
+   topo do Google para "pedras decorativas" tem texto corrido,
    perguntas frequentes e H1 que diz o que se vende. Aqui o texto sai só do
    quadro de produtos e da ficha das cubas — nada inventado. */
 const listaNatural = (itens) =>
@@ -58,11 +60,11 @@ function perguntasFrequentes() {
   const unidades = [...new Set(pedras.flatMap((p) => p.linhas.map((l) => unidadeTexto(l.unidade))))];
   const nomes = (t) => listaNatural(pedrasDe(t).map((p) => p.nome));
   return [
-    ['Quais pedras ornamentais a Magah Minerale vende?',
+    ['Quais pedras decorativas a Magah Minerale vende?',
       `São ${pedras.length} pedras naturais — moledos, lajões, granitos, São Tomé, Miracema, Atacama, pedra madeira, ` +
       `rachão, folheta e paralelepípedos —${cubas.length ? ` e ${cubas.length} cubas esculpidas em pedra` : ''}. ` +
       `Todas estão no acervo, com cor, tamanho, espessura e unidade de venda.`],
-    ['Como pedir um orçamento de pedra ornamental?',
+    ['Como pedir um orçamento de pedra decorativa?',
       `Pelo WhatsApp ${brand.whatsappExibicao}. Diga a pedra, a aplicação, a metragem ou quantidade e a cidade da obra.`],
     ['Quais pedras servem para piso?', `No quadro de pisos estão ${nomes('Pisos')}.`],
     ['Quais pedras servem para muro e mureta?', `Para muros e muretas: ${nomes('Muros e Muretas')}.`],
@@ -332,8 +334,8 @@ function home() {
     <div class="shell guia">
       <div>
         <p class="overline" data-reveal>Guia</p>
-        <h2 class="h2 mt-lg" id="guia-t" data-reveal style="--i:1">Pedras ornamentais em ${brand.regiao}.</h2>
-        <p class="body mt-xl">A ${brand.nome} vende pedras ornamentais naturais em ${brand.regiao} para
+        <h2 class="h2 mt-lg" id="guia-t" data-reveal style="--i:1">Pedras decorativas em ${brand.regiao}.</h2>
+        <p class="body mt-xl">A ${brand.nome} vende pedras decorativas naturais em ${brand.regiao} para
           ${listaNatural(aplicacoes.map((a) => `<a href="${a.href}">${a.nome.toLowerCase()}</a>`))}.
           Cada pedra do acervo traz cor, tamanho, espessura e unidade de venda por aplicação.</p>
         <p class="body">Para revestir paredes e fachadas, há moledos, pedra madeira, Atacama, Miracema e granito
@@ -379,7 +381,7 @@ function home() {
         image: `${brand.dominio}/${img['marca/residencia-encosta'].base}-og.jpg`,
         areaServed: { '@type': 'State', name: brand.regiao, containedInPlace: { '@type': 'Country', name: 'Brasil' } },
         ...(brand.instagram ? { sameAs: [brand.instagram] } : {}),
-        knowsAbout: ['Pedras ornamentais', 'Pedra natural', 'Revestimento de pedra', 'Piso de pedra', 'Muro de pedra', 'Cuba de pedra', 'Paralelepípedo'],
+        knowsAbout: ['Pedras decorativas', 'Pedras ornamentais', 'Pedra natural', 'Revestimento de pedra', 'Piso de pedra', 'Muro de pedra', 'Cuba de pedra', 'Paralelepípedo'],
       },
       {
         '@type': 'WebSite',
@@ -393,8 +395,8 @@ function home() {
   };
 
   return page({
-    title: titulo(`Pedras Ornamentais e Cubas de Pedra em ${brand.regiao}`),
-    description: resumo(`Pedras ornamentais e naturais em ${brand.regiao}: moledo, lajão, granito, São Tomé, ` +
+    title: titulo(`Pedras Decorativas e Cubas de Pedra em ${brand.regiao}`),
+    description: resumo(`Pedras decorativas e naturais em ${brand.regiao}: moledo, lajão, granito, São Tomé, ` +
       `paralelepípedo, pedras para muro e cubas de pedra. Orçamento pelo WhatsApp.`),
     path: 'index.html',
     active: '',
@@ -426,8 +428,8 @@ function paginaAplicacoes() {
   ${faixaOrcamento(base)}`;
 
   return page({
-    title: titulo(`Pedras Ornamentais para Revestimento, Piso e Muro em ${brand.regiaoCurta}`),
-    description: resumo(`Pedras ornamentais para revestimentos, pisos, muros e muretas, escadas, caminhos e praças e ` +
+    title: titulo(`Pedras Decorativas para Revestimento, Piso e Muro em ${brand.regiaoCurta}`),
+    description: resumo(`Pedras decorativas para revestimentos, pisos, muros e muretas, escadas, caminhos e praças e ` +
       `calçamentos em ${brand.regiao}. Veja as obras e peça orçamento.`),
     path: 'aplicacoes.html',
     active: 'aplicacoes.html',
@@ -492,7 +494,7 @@ function paginaAplicacao(a, idx) {
           <p class="caption mt-lg">${a.nome} · ${plural(a.fotos.length, 'obra registrada', 'obras registradas')}</p>
         </div>
       </div>
-      <p class="body max-45 mt-xl">${a.nome} em pedra ornamental natural, em ${brand.regiao}. ${a.linha}
+      <p class="body max-45 mt-xl">${a.nome} em pedra decorativa natural, em ${brand.regiao}. ${a.linha}
         Pedras do acervo para ${a.nome.toLowerCase()}: ${listaNatural(pedrasDe(a.nome).map((p) => linkPedra(p, base)))}.</p>
       <div class="obras">${obras}</div>
     </div>
@@ -513,8 +515,8 @@ function paginaAplicacao(a, idx) {
   ${faixaOrcamento(base, { interesse: `Aplicação: ${a.nome}` })}`;
 
   return page({
-    title: titulo(`${a.nome} em Pedra Ornamental em ${brand.regiaoCurta}`),
-    description: resumo(`${a.nome} em pedra ornamental natural em ${brand.regiao}: ${a.linha.toLowerCase().replace(/\.$/, '')}. ` +
+    title: titulo(`${a.nome} em Pedra Decorativa em ${brand.regiaoCurta}`),
+    description: resumo(`${a.nome} em pedra decorativa natural em ${brand.regiao}: ${a.linha.toLowerCase().replace(/\.$/, '')}. ` +
       `${plural(a.fotos.length, 'obra', 'obras')} com a pedra usada em cada uma.`),
     path: a.href,
     active: 'aplicacoes.html',
@@ -579,8 +581,8 @@ function paginaAcervo() {
   ${faixaOrcamento(base)}`;
 
   return page({
-    title: titulo(`Pedras Ornamentais e Cubas de Pedra em ${brand.regiaoCurta}: Acervo`),
-    description: `${pedras.length} pedras ornamentais registradas em obra${cubas.length ? ` e ${cubas.length} cubas esculpidas em pedra` : ''}: revestimentos, pisos, muros e muretas, escadas, caminhos e praças, calçamentos e estradas.`,
+    title: titulo(`Pedras Decorativas e Cubas de Pedra em ${brand.regiaoCurta}: Acervo`),
+    description: `${pedras.length} pedras decorativas registradas em obra${cubas.length ? ` e ${cubas.length} cubas esculpidas em pedra` : ''}: revestimentos, pisos, muros e muretas, escadas, caminhos e praças, calçamentos e estradas.`,
     path: 'acervo.html',
     active: 'acervo.html',
     depth: 0,
@@ -666,7 +668,7 @@ function paginaPedra(p, idx) {
   <section class="section section--tight" aria-labelledby="ficha">
     <div class="shell">
       <h2 class="overline" id="ficha" data-reveal>Ficha</h2>
-      <p class="body max-45 mt-lg">${p.nome} é uma pedra ornamental natural para
+      <p class="body max-45 mt-lg">${p.nome} é uma pedra decorativa natural para
         ${listaNatural(p.aplicacoes.map((a) => a.toLowerCase()))}, vendida pela ${brand.nome} em ${brand.regiao}.
         ${p.linhas.map((l) => `Em ${l.tipologia.toLowerCase()}: ${l.cor.toLowerCase()}, ${l.tamanho.toLowerCase()}` +
           `${l.espessura ? `, espessura ${l.espessura}` : ''}, vendida por ${unidadeTexto(l.unidade)}.`).join(' ')}
@@ -705,7 +707,7 @@ function paginaPedra(p, idx) {
 
   return page({
     title: titulo(`${p.nome} para ${p.aplicacoes[0]} em ${brand.regiaoCurta}`),
-    description: resumo(`${p.nome}: pedra ornamental para ${p.aplicacoes.join(', ').toLowerCase()} em ${brand.regiao}. ` +
+    description: resumo(`${p.nome}: pedra decorativa para ${p.aplicacoes.join(', ').toLowerCase()} em ${brand.regiao}. ` +
       `${p.linhas[0].cor}, ${p.linhas[0].tamanho.toLowerCase()}, vendida por ${p.linhas[0].unidade === 'm²' ? 'm²' : p.linhas[0].unidade.toLowerCase()}. Orçamento pelo WhatsApp.`),
     path: p.href,
     active: 'acervo.html',
@@ -893,8 +895,8 @@ function paginaSobre() {
   ${faixaOrcamento(base)}`;
 
   return page({
-    title: titulo(`Sobre — Pedras Ornamentais em ${brand.regiaoCurta}`),
-    description: resumo(`${brand.nome}: pedras ornamentais e naturais para arquitetura em ${brand.regiao}. ${pedras.length} pedras em ` +
+    title: titulo(`Sobre — Pedras Decorativas em ${brand.regiaoCurta}`),
+    description: resumo(`${brand.nome}: pedras decorativas e naturais para arquitetura em ${brand.regiao}. ${pedras.length} pedras em ` +
       `${aplicacoes.length} tipologias${cubas.length ? ` e ${cubas.length} cubas esculpidas em pedra` : ''}.`),
     path: 'sobre.html',
     active: 'sobre.html',
@@ -940,8 +942,8 @@ function paginaContato() {
   </section>`;
 
   return page({
-    title: titulo(`Contato e Orçamento — Pedras Ornamentais em ${brand.regiaoCurta}`),
-    description: resumo(`Peça orçamento de pedras ornamentais ou cuba de pedra em ${brand.regiao}: WhatsApp ` +
+    title: titulo(`Contato e Orçamento — Pedras Decorativas em ${brand.regiaoCurta}`),
+    description: resumo(`Peça orçamento de pedras decorativas ou cuba de pedra em ${brand.regiao}: WhatsApp ` +
       `${brand.whatsappExibicao}, Instagram ${brand.instagramUsuario} e e-mail.`),
     path: 'contato.html',
     active: '',
