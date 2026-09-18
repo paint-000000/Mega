@@ -155,7 +155,9 @@ for (const rel of lista) {
 /* A Magah vende só o que está no quadro de produtos; os dados de exemplo do
    Figma não são reais. */
 const PROIBIDOS = [
-  /travertino/i, /m[aá]rmore/i, /calc[aá]rio/i, /alvenaria/i, /cole[cç][oõ]es?\b/i,
+  /* Travertino e mármore barram só os nomes de exemplo do Figma: as cubas
+     Travertino Brasileiro e Mármore Crema Valência são peças reais. */
+  /travertino romano/i, /m[aá]rmore grafite/i, /calc[aá]rio/i, /alvenaria/i, /cole[cç][oõ]es?\b/i,
   /4000-0000/, /00\.000\.000/, /1998/, /48\s?h/i, /garantia/i, /vit[oó]ria/i,
   /processo\.html/,
 ];

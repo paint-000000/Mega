@@ -166,6 +166,7 @@ function footer(base) {
           <ul>
             <li><a href="${base}acervo.html">Todas as pedras</a></li>
             <li><a href="${base}aplicacoes.html">Por aplicação</a></li>
+            <li><a href="${base}acervo.html?a=cubas">Cubas de pedra</a></li>
           </ul>
         </div>
         <div>

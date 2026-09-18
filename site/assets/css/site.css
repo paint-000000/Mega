@@ -1119,3 +1119,7 @@ a:focus-visible > .plate img { transform: scale(1.02); filter: saturate(1) contr
   .whatsapp__rotulo { display: none; }
 }
 @media print { .whatsapp { display: none; } }
+
+/* Cubas: fotos verticais de ambiente com a peça no terço de baixo; o recorte
+   4:5 desce para a cuba não sair do quadro. */
+.plate--cuba img { object-position: 50% 72%; }

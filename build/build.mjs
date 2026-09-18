@@ -13,7 +13,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 import {
-  brand, aplicacoes, pedras,
+  brand, aplicacoes, pedras, cubas, cubasFicha,
   aplicacoesCopy, orcamento, indicadores, img,
 } from './data.mjs';
 import { arrow } from './icons.mjs';
@@ -152,6 +152,30 @@ const slugSimples = (s) =>
   s.normalize('NFKD').replace(/[̀-ͯ]/g, '')
     .replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-|-$/g, '').toLowerCase();
 
+/** Cartão de cuba — mesmo desenho do cartão de pedra, filtro "cubas". */
+function cartaoCuba(c, base, i = 0, nivel = 3) {
+  return `
+  <a class="pedra-card" href="${base}${c.href}" data-reveal style="--i:${i % 4}"
+     data-aplicacoes="cubas">
+    <div class="pedra-card__capa" data-capa="cubas">
+    ${plate(c.capa, {
+      base, alt: c.titulo, ratio: '4x5', cls: 'plate--cuba',
+      sizes: '(max-width: 640px) 92vw, (max-width: 1080px) 46vw, 23vw',
+    })}
+    </div>
+    <h${nivel} class="pedra-card__name">${c.titulo}</h${nivel}>
+    <p class="pedra-card__meta">
+      <span>Cubas</span>
+      ${c.fotos.length > 1 ? `<span class="accent-italic">${c.fotos.length} fotos</span>` : ''}
+    </p>
+  </a>`;
+}
+
+/** WhatsApp com a peça já escrita na mensagem. */
+const whatsappPeca = (peca) =>
+  `https://wa.me/${brand.whatsapp}?text=${encodeURIComponent(
+    `Olá! Vim pelo site da ${brand.nome} e tenho interesse na ${peca}. Pode me passar medidas e valor?`)}`;
+
 /** Anterior / próximo dentro de uma lista. */
 function prevNext(lista, idx, base, rotulo) {
   const ant = lista[(idx - 1 + lista.length) % lista.length];
@@ -159,8 +183,8 @@ function prevNext(lista, idx, base, rotulo) {
   const href = (x) => base + x.href;
   return `
   <nav class="prevnext" aria-label="${rotulo}">
-    <a href="${href(ant)}"><span class="caption">Anterior</span><span class="h4">${ant.nome}</span></a>
-    <a href="${href(prox)}"><span class="caption">Próxima</span><span class="h4">${prox.nome}</span></a>
+    <a href="${href(ant)}"><span class="caption">Anterior</span><span class="h4">${ant.titulo ?? ant.nome}</span></a>
+    <a href="${href(prox)}"><span class="caption">Próxima</span><span class="h4">${prox.titulo ?? prox.nome}</span></a>
   </nav>`;
 }
 
@@ -433,6 +457,7 @@ function paginaAcervo() {
     ...aplicacoes.map(
       (a) => `<button class="filtro" type="button" data-filtro="${a.slug}" aria-pressed="false">${a.nome}</button>`
     ),
+    ...(cubas.length ? ['<button class="filtro" type="button" data-filtro="cubas" aria-pressed="false">Cubas</button>'] : []),
   ].join('');
 
   const body = `
@@ -442,24 +467,28 @@ function paginaAcervo() {
       <div class="section-head mt-xl">
         <div class="section-head__txt">
           <p class="overline">Acervo</p>
-          <h1 class="h1" id="t">${pedras.length} pedras, ${aplicacoes.reduce((s, a) => s + a.fotos.length, 0)} obras.</h1>
+          <h1 class="h1" id="t">${cubas.length
+            ? `${pedras.length} pedras, ${cubas.length} cubas.`
+            : `${pedras.length} pedras, ${aplicacoes.reduce((s, a) => s + a.fotos.length, 0)} obras.`}</h1>
         </div>
         <div>
           <p class="body max-45">Cada pedra registrada na obra em que foi assentada, com cor,
-            tamanho, espessura e unidade de venda por aplicação.</p>
-          <p class="caption mt-lg" role="status" data-contagem>${plural(pedras.length, 'pedra', 'pedras')}</p>
+            tamanho, espessura e unidade de venda por aplicação${cubas.length ? '. E as cubas esculpidas em pedra, peça a peça' : ''}.</p>
+          <p class="caption mt-lg" role="status" data-contagem>${cubas.length
+            ? plural(pedras.length + cubas.length, 'peça', 'peças')
+            : plural(pedras.length, 'pedra', 'pedras')}</p>
         </div>
       </div>
 
       <div class="filtros" role="group" aria-label="Filtrar por aplicação">${filtros}</div>
-      <div class="acervo-grid">${pedras.map((p, i) => cartaoPedra(p, base, i, 2)).join('')}</div>
+      <div class="acervo-grid">${pedras.map((p, i) => cartaoPedra(p, base, i, 2)).join('')}${cubas.map((c, i) => cartaoCuba(c, base, i, 2)).join('')}</div>
     </div>
   </section>
   ${faixaOrcamento(base)}`;
 
   return page({
     title: `Acervo — ${brand.nome}`,
-    description: `${pedras.length} pedras naturais registradas em obra: revestimentos, pisos, muros e muretas, escadas, caminhos e praças, calçamentos e estradas.`,
+    description: `${pedras.length} pedras naturais registradas em obra${cubas.length ? ` e ${cubas.length} cubas esculpidas em pedra` : ''}: revestimentos, pisos, muros e muretas, escadas, caminhos e praças, calçamentos e estradas.`,
     path: 'acervo.html',
     active: 'acervo.html',
     depth: 0,
@@ -471,11 +500,12 @@ function paginaAcervo() {
       inLanguage: 'pt-BR',
       mainEntity: {
         '@type': 'ItemList',
-        numberOfItems: pedras.length,
-        itemListElement: pedras.map((p, i) => ({
-          '@type': 'ListItem', position: i + 1, name: p.nome,
-          url: `${brand.dominio}/${p.href}`,
-        })),
+        numberOfItems: pedras.length + cubas.length,
+        itemListElement: [...pedras.map((p) => [p.nome, p.href]), ...cubas.map((c) => [c.titulo, c.href])]
+          .map(([name, href], i) => ({
+            '@type': 'ListItem', position: i + 1, name,
+            url: `${brand.dominio}/${href}`,
+          })),
       },
     },
     body,
@@ -594,6 +624,119 @@ function paginaPedra(p, idx) {
           brand: { '@type': 'Brand', name: brand.nome },
           image: p.fotos.map((f) => `${brand.dominio}/${img[f.key].base}-${img[f.key].widths.at(-1)}.webp`),
           color: [...new Set(p.linhas.map((l) => l.cor))].join('; '),
+        },
+        breadcrumbSchema(trilha),
+      ],
+    },
+    body,
+  });
+}
+
+/* ================================================================== CUBA */
+
+function paginaCuba(c, idx) {
+  const base = '../';
+  const trilha = [
+    { label: 'Início', href: 'index.html', path: 'index.html' },
+    { label: 'Acervo', href: 'acervo.html', path: 'acervo.html' },
+    { label: c.titulo, path: c.href },
+  ];
+  const outras = [1, 2, 3, 4].map((k) => cubas[(idx + k) % cubas.length]).filter((o) => o !== c);
+
+  const galeria = c.fotos.length > 1
+    ? `
+  <section class="section section--tight" aria-labelledby="gal">
+    <div class="shell">
+      <h2 class="overline" id="gal" data-reveal>A mesma peça, ${plural(c.fotos.length, 'foto', 'fotos')}</h2>
+      <div class="galeria mt-xl">
+        ${c.fotos.map((f, i) => `
+        <figure data-reveal="mask" style="--i:${i}">
+          ${plate(f.key, {
+            base, alt: `${c.titulo}, foto ${i + 1}`, ratio: '4x5', cls: 'plate--cuba',
+            sizes: '(max-width: 640px) 92vw, (max-width: 1080px) 46vw, 31vw',
+          })}
+        </figure>`).join('')}
+      </div>
+    </div>
+  </section>`
+    : '';
+
+  const body = `
+  <section class="shell prod-hero" aria-labelledby="t">
+    <div>
+      ${crumbs(trilha, base)}
+      <p class="overline mt-xl">Acervo · Cubas</p>
+      <h1 class="h1" id="t">${c.titulo}</h1>
+      <div class="tag-row mt-lg">
+        <a class="tag tag--dot" href="${base}acervo.html?a=cubas">Cubas</a>
+      </div>
+      <p class="body mt-lg muted">Peça única, esculpida em ${c.nome}. Medidas a consultar.</p>
+      <div class="prod-hero__ctas">
+        <a class="btn btn--primary btn--lg" href="${esc(whatsappPeca(`cuba ${c.nome}`))}" target="_blank" rel="noopener">Pedir orçamento${arrow}</a>
+        <a class="btn btn--secondary btn--lg" href="${base}acervo.html?a=cubas">Ver todas as cubas${arrow}</a>
+      </div>
+    </div>
+    <div class="prod-hero__media">
+      ${plate(c.capa, {
+        base, alt: c.titulo, ratio: '4x5', cls: 'plate--cuba', eager: true,
+        sizes: '(max-width: 860px) 92vw, 42vw',
+      })}
+    </div>
+  </section>
+  ${galeria}
+
+  <section class="section section--tight" aria-labelledby="ficha">
+    <div class="shell">
+      <h2 class="overline" id="ficha" data-reveal>Ficha</h2>
+      <div class="ficha-grupo mt-lg">
+        <h3 class="h4">Medidas a consultar</h3>
+        <dl class="ficha">
+          <div><dt>Padrão</dt><dd>${cubasFicha.padrao}</dd></div>
+          <div><dt>Sob medida</dt><dd>${cubasFicha.sobMedida}</dd></div>
+          <div><dt>Material</dt><dd>${c.nome}</dd></div>
+          <div><dt>Unidade de venda</dt><dd>${cubasFicha.unidade}</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  ${outras.length ? `
+  <section class="section section--sunken section--tight" aria-labelledby="rel">
+    <div class="shell">
+      <div class="section-head">
+        <div class="section-head__txt">
+          <p class="overline" data-reveal>Também no acervo</p>
+          <h2 class="h2" id="rel" data-reveal style="--i:1">Outras cubas.</h2>
+        </div>
+        <a class="btn btn--ghost" href="${base}acervo.html?a=cubas">Ver todas as cubas${arrow}</a>
+      </div>
+      <div class="acervo-grid">${outras.map((o, i) => cartaoCuba(o, base, i, 3)).join('')}</div>
+    </div>
+  </section>` : ''}
+
+  <section class="section section--tight">
+    <div class="shell">${prevNext(cubas, idx, base, 'Outras cubas')}</div>
+  </section>
+  ${faixaOrcamento(base, { interesse: `Cuba de interesse: ${c.nome}` })}`;
+
+  return page({
+    title: `${c.titulo} — Acervo — ${brand.nome}`,
+    description: `${c.titulo}, esculpida em pedra natural. Padrão 48 × 38 × 15 cm; peças de até 90 cm sob consulta.`,
+    path: c.href,
+    active: 'acervo.html',
+    depth: 1,
+    ogImage: c.capa,
+    preload: c.capa,
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Product',
+          name: c.titulo,
+          category: 'Cubas',
+          brand: { '@type': 'Brand', name: brand.nome },
+          image: c.fotos.map((f) => `${brand.dominio}/${img[f.key].base}-${img[f.key].widths.at(-1)}.webp`),
+          material: c.nome,
         },
         breadcrumbSchema(trilha),
       ],
@@ -747,6 +890,7 @@ function main() {
   aplicacoes.forEach((a, i) => emitir(a.href, paginaAplicacao(a, i)));
   emitir('acervo.html', paginaAcervo());
   pedras.forEach((p, i) => emitir(p.href, paginaPedra(p, i)));
+  cubas.forEach((c, i) => emitir(c.href, paginaCuba(c, i)));
   emitir('sobre.html', paginaSobre());
   emitir('contato.html', paginaContato());
   escreve('404.html', pagina404());

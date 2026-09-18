@@ -620,6 +620,615 @@
   "lqip": "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAADQAwCdASoQABQAPulep00pJSOiMAgBIB0JYwAAV8h0k++twDKPLcgA/mzzWfeN2eUykSPAaMFwOuZIj8Gv6SywY544LCYtIt+3Bf8LcLJ5Gr2WpJ9tOfJEXMl28tKiP//AXC+zH6kdkZj9uTJhECgA",
   "source": "REVESTIMENTOS/18_Pedra_Miracema_Laje_1.jpeg"
  },
+ "cubas/ametista-chevron": {
+  "base": "assets/img/cubas/ametista-chevron",
+  "w": 900,
+  "h": 1600,
+  "widths": [
+   420,
+   640,
+   900
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAQBACdASoLABQAPuleqE0pJSQiMAgBIB0JZQDCgCPn19+5AZZG8WWMAAD+tU0FCJg0/8a0orIRqWtPKqRNsU6MqilVCMXM2qds25QqP9I7c2yKJDNGg0Pp5oxVmj93XNZZMdo1yqsAAA==",
+  "source": "CUBAS/Ametista Chevron.jpg"
+ },
+ "cubas/ametista-rosa-2": {
+  "base": "assets/img/cubas/ametista-rosa-2",
+  "w": 1024,
+  "h": 1536,
+  "widths": [
+   420,
+   640,
+   960,
+   1024
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACQAwCdASoNABQAPuleqE0pJSOiMAgBIB0JQBdgAtaiDQzezNoAAMl2jSfFsc2mmz4ao1OugpH8GSljWzXMDd2UzKx8jXFGycDJW+9tPLIxFAvAf9+rNvMMTkhaavooojnYevyaGxwAAA==",
+  "source": "CUBAS/Ametista Rosa (2).jpg"
+ },
+ "cubas/ametista-rosa": {
+  "base": "assets/img/cubas/ametista-rosa",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACQAwCdASoNABQAPulgqE0pJaQiMAgBIB0JQBdgAWyHykhEAucAANy1ewAcxp3SofcgfgC92eRvrH6TnEYT3Jh3vEtyiMmJeGw+MWG60MGW2qTze/6Huw43xmNISMf6dKVHkFXt9qAAAA==",
+  "source": "CUBAS/Ametista Rosa.jpg"
+ },
+ "cubas/apatita-na-matriz-organico": {
+  "base": "assets/img/cubas/apatita-na-matriz-organico",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAQBACdASoNABQAPulgqE0pJaOiMAgBIB0JQBOmUABHWOYhahwXXH2xgAD+XoSGYY7xbH9RkLY03GaCfPrCXZVxvt2m2MQP+n+8SoYS8XW9eGTf6A9qp15LXj3DslL/jpZpI6R8AAA=",
+  "source": "CUBAS/Apatita na Matriz (orgânico).jpg"
+ },
+ "cubas/apatita-na-matriz": {
+  "base": "assets/img/cubas/apatita-na-matriz",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAACwAwCdASoNABQAPulep00pJSOiMAgBIB0JZACdMoR3AB+AFJJfAAD+qIHiob9AVkTv+wCRp4Dmcng/bQF4I/1gRB9VyJu+vgjs5pnOH+3l5HQPp+wfNJRobQAAAA==",
+  "source": "CUBAS/Apatita na Matriz.jpg"
+ },
+ "cubas/aragonita-peruana": {
+  "base": "assets/img/cubas/aragonita-peruana",
+  "w": 1229,
+  "h": 1639,
+  "widths": [
+   420,
+   640,
+   960,
+   1229
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAADwAwCdASoPABQAPulgqE2pJaOiMAgBIB0JZQAAW+oVwQYQK37y1lkAAP7qjJ2BHNWBvd5csTnxG7UQ9mAIBsK++VYuDYIWCnqYOtgKarCU0kvWIxE/NOpUsW7wzGmaai0M4fSQWEeN/4AA",
+  "source": "CUBAS/Aragonita Peruana.jpg"
+ },
+ "cubas/azul-macaubas-borda-alta": {
+  "base": "assets/img/cubas/azul-macaubas-borda-alta",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAAAQBACdASoNABQAPuleqE0pJSQiMAgBIB0JZwC7ACHpXGXo6gsMzKDQAAD+1gqsXdbPZCr8q3sLvjhPphZ7N8lq3DAssO/Ly8uRFwJ1tITMfRdUAAA=",
+  "source": "CUBAS/Azul Macaúbas Borda Alta.jpg"
+ },
+ "cubas/azul-macaubas": {
+  "base": "assets/img/cubas/azul-macaubas",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAACwAwCdASoNABQAPulgqU2pJaQiMAgBIB0JYwC7AA3G0Sbes5oaAAD+xyFbE8o2eZQUP9gZv/lrfNlFyPTQ6KrPtuHf4W/y9cv5m4ztdCt+MfnE8XExmd9AAAA=",
+  "source": "CUBAS/Azul Macaúbas.jpg"
+ },
+ "cubas/basalto-bruto-oval": {
+  "base": "assets/img/cubas/basalto-bruto-oval",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAACwAwCdASoNABQAPulgqE0pJaOiMAgBIB0JQBWAAw8r2TML6vc9wAD+43JEPR7xTR8Tk83xs9G9dBmkjMy1r9/IisA1aNoSGjYO/127qKuEE4g+63WwbPoj8i8msoj2OjgAAA==",
+  "source": "CUBAS/Basalto Bruto Oval.jpg"
+ },
+ "cubas/basalto-com-borda-alta": {
+  "base": "assets/img/cubas/basalto-com-borda-alta",
+  "w": 1024,
+  "h": 1024,
+  "widths": [
+   420,
+   640,
+   960,
+   1024
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAADwBACdASoUABQAPulsrlGpJaQiqAgBIB0JYgCdMoABqC0cK/SK5o3M1LJ+3MFz+AAA/s3o77ZP3tQSkVCcvFOz4vJx6Yn81jYW1xyJDQSpQemDvsX0wEUpv4UHyCeeR9cR9yIv55+WZN3TtiCTuKk+C6UAr7Ie7xdE+vNfKmR0EGqr87Gsb/oTnEDqonQtVOYy++F5Ldyo5TvLA4zPWRQUSpvHJXtLAAA=",
+  "source": "CUBAS/Basalto com Borda Alta.jpg"
+ },
+ "cubas/branco-parana-em-bloco": {
+  "base": "assets/img/cubas/branco-parana-em-bloco",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAACwAwCdASoNABQAPulgqE0pJaQiMAgBIB0JQBYdgybYEuzr5HjLTAD7bEIroYbpjy5o0C+cl5VRKSFrkIuoaKUFaWumquKIuMWE69eN0Kr47iKkOBajlfyEffQyaDiQyuAAAA==",
+  "source": "CUBAS/Branco Paraná em Bloco.jpg"
+ },
+ "cubas/branco-parana": {
+  "base": "assets/img/cubas/branco-parana",
+  "w": 1485,
+  "h": 1844,
+  "widths": [
+   420,
+   640,
+   960,
+   1280,
+   1485
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADQAwCdASoQABQAPuleqE0pJSOiMAgBIB0JZQCsAB8iAsD8lBfTDgAA4hiN3oGLh4uKpUokwafdKd5+4A9tnC5OrSORUKzpUFn14TW44ei9py2AAAA=",
+  "source": "CUBAS/Branco Paraná.jpg"
+ },
+ "cubas/calcita-laranja": {
+  "base": "assets/img/cubas/calcita-laranja",
+  "w": 1115,
+  "h": 1384,
+  "widths": [
+   420,
+   640,
+   960,
+   1115
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAAAwBACdASoQABQAPuleqE0pJSOiMAgBIB0JQBOmUABv8Tjrw9Lcl4TdYeAAze91jakRyMOY6YXTa6XPk47j5iFoD/ZvhaB7+mPEHM2G2kOhbLwk+lzFcTynz1vgobS9Q55oJnfiuYuqJmhA70AAAA==",
+  "source": "CUBAS/Calcita Laranja.jpg"
+ },
+ "cubas/concha-perola-em-quartzo-rosa": {
+  "base": "assets/img/cubas/concha-perola-em-quartzo-rosa",
+  "w": 1076,
+  "h": 1434,
+  "widths": [
+   420,
+   640,
+   960,
+   1076
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAACwAwCdASoPABQAPulgqU0pJaQiMAgBIB0JaQAAW+qOTRGRVtuXYAD+36Yw9G0OEYZDiQAIonauXeHMZy1AUCadPKBYqBkbaFbagF+AThC356tOd4wAAA==",
+  "source": "CUBAS/Concha + Pérola em Quartzo Rosa.jpg"
+ },
+ "cubas/concha-em-quartzo-branco-rajado": {
+  "base": "assets/img/cubas/concha-em-quartzo-branco-rajado",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAQBACdASoNABQAPuliqU2pJaQiMAgBIB0JYgCdL46BexJLeFYjEl+UAAD+7OQcToUdyhkxyH1JXMnJ4Vq0frtwQrTrw89UmPOAGTgclPRHjuNrU/BQAS8DNwVQc0VEg3h4GO7EAAA=",
+  "source": "CUBAS/Concha em Quartzo Branco Rajado.jpg"
+ },
+ "cubas/concha-em-quartzo-branco": {
+  "base": "assets/img/cubas/concha-em-quartzo-branco",
+  "w": 1076,
+  "h": 1434,
+  "widths": [
+   420,
+   640,
+   960,
+   1076
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADQAwCdASoPABQAPuloq06pJiQiMAgBIB0JaQAAUp8vQVwspE09erAA/t7n5fS0SDqvltfgurCdOf3ofM/hV2pwEKaJU6OoU6JESwOGEAA=",
+  "source": "CUBAS/Concha em Quartzo Branco.jpg"
+ },
+ "cubas/concha-em-sodalita-azul": {
+  "base": "assets/img/cubas/concha-em-sodalita-azul",
+  "w": 1485,
+  "h": 1844,
+  "widths": [
+   420,
+   640,
+   960,
+   1280,
+   1485
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAADwAwCdASoQABQAPuleqE0pJSOiMAgBIB0JZQAAWlUJyEWAmJvcxrRAAP6TdHOdl0RIUO10yGkkkfUTBpw+WbIkMypni+b1qBdCPKa2zOu9l3rxxbU9SAMfgOpL8scwC/ZY43aus0F3KHvYa9SRPdRZ+NkkMwPhD3eyo6RNVBECYAAA",
+  "source": "CUBAS/Concha em Sodalita Azul.jpg"
+ },
+ "cubas/diopsidio": {
+  "base": "assets/img/cubas/diopsidio",
+  "w": 1080,
+  "h": 1440,
+  "widths": [
+   420,
+   640,
+   960,
+   1080
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwAwCdASoPABQAPulgqE0pJaQiMAgBIB0JZwAAW4SNn8nM/6u57pRAAP7qcySFpY30dLsxk+e/dHy+ZErikK/4MWNz5KNqU1fBTGeZVAm5oPHSZtXTh7RGfrczT/xcPESHcqInxQAAAA==",
+  "source": "CUBAS/Diopsídio.jpg"
+ },
+ "cubas/esmeralda-preta": {
+  "base": "assets/img/cubas/esmeralda-preta",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAADQAwCdASoNABQAPulep00pJSOiMAgBIB0JQBOmUABRnM7qWM4ViEAA+/71zFN0lTHn5ikbTQbQ6/bb8yw/mUgQ5AopOENKGCKTlRu5oCV6JG0N7y6lEqg20nOEwuREZTqBzoLDTEGgw9mSpa0AAA==",
+  "source": "CUBAS/Esmeralda Preta.jpg"
+ },
+ "cubas/estromatolito-peruano-fossil": {
+  "base": "assets/img/cubas/estromatolito-peruano-fossil",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAAAQBACdASoNABQAPulgqE0pJaQiMAgBIB0JYgCdMoMYADeRQdJYugWHAAD+vaifXiNwHFRLGmaLt0GA9F4nEeU8u7wairpHbLyVYZhh9j96sUM2WDvCnhpymGxQOgWjCYHUkpjKTonQ3/6AAAA=",
+  "source": "CUBAS/Estromatólito Peruano Fóssil.jpg"
+ },
+ "cubas/fluorita-lilas-translucida": {
+  "base": "assets/img/cubas/fluorita-lilas-translucida",
+  "w": 896,
+  "h": 1200,
+  "widths": [
+   420,
+   640,
+   896
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAADwAwCdASoPABQAPulep00pJSOiMAgBIB0JQBOgAyYAqILWtPrHm18AAOJ8j5yyV2aw+XtBVYc6v29rZ8INzo/JgDzkDh5rtjFleh259kCeyW6d664zPcFcxkipiV3r7QRHDSzJ+yOrvdGlkJMaP4POdZkiiz9P+FV3vxUGO+Ro2AAA",
+  "source": "CUBAS/Fluorita Lilás Translúcida.jpg"
+ },
+ "cubas/fluorita-verde-e-roxa": {
+  "base": "assets/img/cubas/fluorita-verde-e-roxa",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAACQAwCdASoNABQAPulgqE0pJaQiMAgBIB0JYwAAQimPUg1RkEcAAP6mR0Vp4hGpT3ELvE/V6MYmhW2as948PEfbeJV9ygM/QvNhdvvC7s1hDHgZXwsqDgDvEDnAAA==",
+  "source": "CUBAS/Fluorita Verde e Roxa.jpg"
+ },
+ "cubas/fluorita-verde-organica": {
+  "base": "assets/img/cubas/fluorita-verde-organica",
+  "w": 1024,
+  "h": 1024,
+  "widths": [
+   420,
+   640,
+   960,
+   1024
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAABQBQCdASoUABQAPulsrlGpJaQiqAgBIB0JQBdmau3/wD69QjvGaWBaq3wGFXhFCpwy0AAAzh6W/JpsVZgYRMcertDfkeYeR//R7Ye3AQukFebNgRZKPKBm+7fyaltiooB64TTE7Vd163ZldXOGl+ebI1cfSRgaQHQsg3rZFcM+p1S9DJZsp5n2GwRFjV6FJc7EN5Jo2WDkCPMjRy3RGVDE8CXwc4AAAAA=",
+  "source": "CUBAS/Fluorita verde orgânica.jpg"
+ },
+ "cubas/marmore-crema-valencia": {
+  "base": "assets/img/cubas/marmore-crema-valencia",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAAAwBACdASoNABQAPulep00pJSOiMAgBIB0JZgCdMoMYADja9hJ1dqkINwgA/r9/U7fXNWWo7vt2VjR0/T1tzWcNiW5LtGyEd1c3vzJkhMW4JAlrzqT0UyZhF0OboyaEBSd5Z1zLSXGvpgAA",
+  "source": "CUBAS/Mármore Crema Valência.jpg"
+ },
+ "cubas/obsidiana-mogno": {
+  "base": "assets/img/cubas/obsidiana-mogno",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADwAwCdASoNABQAPulgqE0pJaOiMAgBIB0JQBOmUABMpU00pZov1JFwAPyhqqA2A6p+AvkC6nSDWktwz1XCA8xua0ovUyRAJOr1nnVeiV8bZu3AWNsUhDhKsAA=",
+  "source": "CUBAS/Obsidiana Mogno.jpg"
+ },
+ "cubas/preto-absoluto": {
+  "base": "assets/img/cubas/preto-absoluto",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAAAQBACdASoNABQAPulep00pJSOiMAgBIB0JQBOgBA1/dUZ5T5Q/e5e6AAD+5snHC2HmgtFX/2ntQ23CCr5GILz3QMsRZMSUhP41S8twguXGiUyKGWdGv7Q15SH19q1JmF8MGNgGuWi+2SpsAAA=",
+  "source": "CUBAS/Preto Absoluto.jpg"
+ },
+ "cubas/quartzo-branco-bruto": {
+  "base": "assets/img/cubas/quartzo-branco-bruto",
+  "w": 1200,
+  "h": 896,
+  "widths": [
+   420,
+   640,
+   960,
+   1200
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAABwAwCdASoUAA8APuleqE0pJSOiMAgBIB0JQBYdgbAuw4Dp7AAA/VPOM9bup2ziquIonTn+a1Ljx8oykqt6+EZ5KSLqUbKOC2C3C5RypQ2cppL1AHHkaF8mkulvHFqJKmCpWOoplYhKV9m8Pbgg11Brp7J/0zdqNLDY362/EAA=",
+  "source": "CUBAS/Quartzo Branco Bruto.jpg"
+ },
+ "cubas/quartzo-branco-polido": {
+  "base": "assets/img/cubas/quartzo-branco-polido",
+  "w": 1024,
+  "h": 1024,
+  "widths": [
+   420,
+   640,
+   960,
+   1024
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAAAQBQCdASoUABQAPulsr1GpJaQiqAgBIB0JQBYj45BTAfjgc6atA1YwCJkbxHETkDnwAPObWa8fVmDocTyrh445xCMDumxi7e1sw1vSD+Ne2KgqC06qeRxLVgA3xv/Sn7nG4bD8ik/5PtiUbSTVpMS3sSPI/j8AAAA=",
+  "source": "CUBAS/Quartzo Branco Polido.jpg"
+ },
+ "cubas/quartzo-rosa-borda-alta": {
+  "base": "assets/img/cubas/quartzo-rosa-borda-alta",
+  "w": 1024,
+  "h": 1024,
+  "widths": [
+   420,
+   640,
+   960,
+   1024
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAACQBACdASoUABQAPulsrlGpJaQiqAgBIB0JYwDG9BEdoKBzw8rsGURUgwBCnnAA/tywX+/B0UTSo/TGeDRrwAfde37em0KPQU+32yKmvDxGMNATrSN90k71lds4SLDf3dkHjqaXql2cGwQAAAA=",
+  "source": "CUBAS/Quartzo Rosa Borda Alta.jpg"
+ },
+ "cubas/quartzo-rosa-bruto": {
+  "base": "assets/img/cubas/quartzo-rosa-bruto",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAADwAwCdASoNABQAPulgqE0pJaQiMAgBIB0JQBWAA3Rv0OrSY6DaBn6AAM4W8nvjbN74abDhcS4pTgUAhjHE0ekIbFFMYkYYjfCELMInWDMKPAENtal+csJ3w2/jh1TnvgppupgRYvB+1/SpgAA=",
+  "source": "CUBAS/Quartzo Rosa Bruto.jpg"
+ },
+ "cubas/quartzo-verde-bruto": {
+  "base": "assets/img/cubas/quartzo-verde-bruto",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAQBACdASoNABQAPulgqE0pJaOiMAgBIB0JQBOmUABWeKH/qisi0A0zAAD+nylWQK41yLo3uCWiTxIg8qBZOWletp6P+plyHpJ7aE/7y0d8FJs7GUitSSZ3TvjLl5UYD8KdQ+sAAAA=",
+  "source": "CUBAS/Quartzo Verde Bruto.jpg"
+ },
+ "cubas/sodalita-azul-borda-alta": {
+  "base": "assets/img/cubas/sodalita-azul-borda-alta",
+  "w": 896,
+  "h": 1200,
+  "widths": [
+   420,
+   640,
+   896
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAAAQBACdASoPABQAPuleqE0pJSOiMAgBIB0JYgCdLwABUqwOb5/Lpoaw0AD937G8KBq3QMVHbCebiNeUja/1q2BX0DZrAS4BpqsLkzvSOJYsR+PLrav/pug8jT9eHRslglKzVTnWaDbntva1Z2oG08vEF8/guD4NnAA=",
+  "source": "CUBAS/Sodalita Azul Borda Alta.jpg"
+ },
+ "cubas/sodalita-azul-bruta": {
+  "base": "assets/img/cubas/sodalita-azul-bruta",
+  "w": 800,
+  "h": 1328,
+  "widths": [
+   420,
+   640,
+   800
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADwAwCdASoMABQAPuleqE0pJSQiMAgBIB0JZQC+SBttFc3U5WNZD+EAAP6UNx8MGVrH21BROAdlfKRwsDYsTOrQGGdq25vJEeoFrhWrz6lj5W7s+ZpZekYk4AA=",
+  "source": "CUBAS/Sodalita Azul Bruta.jpg"
+ },
+ "cubas/travertino-brasileiro-bege-bahia": {
+  "base": "assets/img/cubas/travertino-brasileiro-bege-bahia",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAAAQBACdASoNABQAPuleqE0pJSOiMAgBIB0JYgCw7B9itz3eALdRNUkIAAD+3crvbDdHbVnmfZYpkvMkTN3v7/eiPWu9nUWqbYOXmLeC18nQp4EJ+LbnuPyUWhIanaWE0TxcHkAB8JpIwAAA",
+  "source": "CUBAS/Travertino Brasileiro (bege Bahia).jpg"
+ },
+ "cubas/zoisita-rubi": {
+  "base": "assets/img/cubas/zoisita-rubi",
+  "w": 922,
+  "h": 1383,
+  "widths": [
+   420,
+   640,
+   922
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwAwCdASoNABQAPulgqE0pJaQiMAgBIB0JQBOmUAA/fesxQAd+yI2wAP6pEBgGWp03sftO/XEPNV8gsTEALOvSxoMrzheHD0nWsDgQNxnY23swtGFLCVy07okMzJF+LE/miGsJogAAAA==",
+  "source": "CUBAS/Zoisita Rubi.jpg"
+ },
+ "cubas/agatha-arvore-indiana": {
+  "base": "assets/img/cubas/agatha-arvore-indiana",
+  "w": 896,
+  "h": 1200,
+  "widths": [
+   420,
+   640,
+   896
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAADwAwCdASoPABQAPuleqE0pJSOiMAgBIB0JYwC/OCPNQZhVXxSV9NaAAOJ2M1fWz8W2YjHVzG4GQO82sZSY+cVcWWE+QF4+MCHH2Kn5mV8ziKos1tHTMtpfLv+zutYl7ZJzcnUUXI97WVezad1mELTJFhyVG8b+ZAAkSuX5iJ7d778AAAA=",
+  "source": "CUBAS/Ágatha Árvore Indiana.jpg"
+ },
+ "cubas/onix-azul": {
+  "base": "assets/img/cubas/onix-azul",
+  "w": 1350,
+  "h": 1688,
+  "widths": [
+   420,
+   640,
+   960,
+   1280,
+   1350
+  ],
+  "social": {
+   "w": 1200,
+   "h": 630
+  },
+  "lqip": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAABwAwCdASoQABQAPulgqE0pJaOiMAgBIB0JZwAAW9Z35RnjZqAA/sgl2lC7+dB0NrBmac/ajeHCvs93W+IY/LIoOgh1+Yv27FYmqM897Xu+tlcK0bLhGquTvDfl7AiJ86nxLYB13uCAAA==",
+  "source": "CUBAS/Ônix Azul.jpg"
+ },
  "marca/residencia-encosta": {
   "base": "assets/img/marca/residencia-encosta",
   "w": 1023,

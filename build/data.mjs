@@ -242,6 +242,48 @@ export const aplicacoes = CATEGORIAS.map((c) => {
   };
 });
 
+/* ------------------------------------------------------------------ cubas */
+
+/**
+ * Cubas esculpidas em pedra natural e cristal. Não entram no quadro de obras:
+ * cada foto de <raiz>/CUBAS/ é uma peça, e o nome do arquivo é o material
+ * ("Ametista Rosa (2).jpg" é a segunda foto da mesma peça). No acervo, as
+ * cubas ganham o filtro "Cubas" e uma página cada.
+ */
+export const cubasFicha = {
+  padrao: '48 cm comprimento × 38 cm largura × 15 cm altura',
+  sobMedida: 'Analisamos caso a caso, peças de até 90 cm',
+  unidade: 'Peça',
+};
+
+const MINUSCULAS = new Set(['e', 'em', 'na', 'no', 'do', 'da', 'de', 'com']);
+const nomeCuba = (arquivo) =>
+  arquivo.replace(/\.[^.]+$/, '').replace(/\s*\(\d+\)$/, '').trim()
+    .split(/\s+/)
+    .map((p, i) => (i && MINUSCULAS.has(p.toLowerCase()) ? p.toLowerCase() : p[0].toUpperCase() + p.slice(1)))
+    .join(' ')
+    .replace(/\((\p{L})/gu, (_, l) => `(${l.toUpperCase()})`);
+
+const porCuba = new Map();
+for (const [key, meta] of Object.entries(img)) {
+  if (!key.startsWith('cubas/')) continue;
+  const arquivo = meta.source.split('/').pop();
+  const nome = nomeCuba(arquivo);
+  const s = slug(nome);
+  if (!porCuba.has(s)) porCuba.set(s, { slug: s, nome, fotos: [] });
+  porCuba.get(s).fotos.push({ key, ordem: Number(arquivo.match(/\((\d+)\)\.[^.]+$/)?.[1] ?? 1) });
+}
+
+export const cubas = [...porCuba.values()]
+  .map((c) => {
+    c.fotos.sort((a, b) => a.ordem - b.ordem);
+    c.capa = c.fotos[0].key;
+    c.titulo = `Cuba ${c.nome}`;
+    c.href = `acervo/cuba-${c.slug}.html`;
+    return c;
+  })
+  .sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
+
 /** Indicadores — todos contados a partir do quadro e do acervo. */
 export const indicadores = [
   { valor: String(pedras.length), rotulo: 'Pedras no quadro' },

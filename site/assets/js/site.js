@@ -188,7 +188,9 @@
       filtros.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.filtro === chave)));
       if (contador) {
         contador.textContent =
-          `${visiveis} ${visiveis === 1 ? 'pedra' : 'pedras'}`;
+          chave === 'cubas' ? `${visiveis} ${visiveis === 1 ? 'cuba' : 'cubas'}`
+          : chave === 'todas' && $('[data-filtro="cubas"]') ? `${visiveis} ${visiveis === 1 ? 'peça' : 'peças'}`
+          : `${visiveis} ${visiveis === 1 ? 'pedra' : 'pedras'}`;
       }
       // Aberto direto do disco (file://), o navegador recusa reescrever o
       // endereço: o filtro funciona igual, só não vai para a barra de endereço.

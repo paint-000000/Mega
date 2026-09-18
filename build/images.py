@@ -15,6 +15,8 @@ Matrizes:
      comprimidas, e em WebP de qualidade equivalente pesariam 73% mais.
   2. As 6 fotografias do arquivo Figma, em build/figma/ — as PNG viraram WebP
      q90 (82% menores); raw_1 já era JPEG e fica.
+  3. As fotografias das cubas, em <raiz>/CUBAS/ — uma por cuba, com o nome do
+     material no nome do arquivo ("Ametista Rosa (2).jpg" é a 2ª foto da peça).
 """
 import base64
 import io
@@ -41,6 +43,7 @@ QUALIDADE_CARTAO = 82
 LARGURA_MAX_CARTAO = 1200  # prévia de link não mostra mais que isso
 PROPORCAO_CARTAO = 1200 / 630
 MATRIZES = (".webp", ".jpg", ".jpeg", ".png")
+CUBAS = "CUBAS"  # pasta das cubas: fora do quadro de obras, com página própria no acervo
 
 
 def slugify(text):
@@ -134,7 +137,7 @@ def main():
     # --- 1. Acervo fotográfico por categoria -------------------------------
     for entry in sorted(os.listdir(ROOT)):
         cat_dir = os.path.join(ROOT, entry)
-        if not os.path.isdir(cat_dir) or entry.startswith((".", "_")) or entry in ("site", "build", "node_modules"):
+        if not os.path.isdir(cat_dir) or entry.startswith((".", "_")) or entry in ("site", "build", "node_modules", CUBAS):
             continue
         files = [f for f in sorted(os.listdir(cat_dir)) if f.lower().endswith(MATRIZES)]
         if not files:
@@ -145,7 +148,17 @@ def main():
             manifest[key] = emit(os.path.join(cat_dir, f), "acervo", slugify(stem), cartao_inteiro=True)
             manifest[key]["source"] = f"{entry}/{f}"
 
-    # --- 2. Fotografias vindas do Figma ------------------------------------
+    # --- 2. Cubas ------------------------------------------------------------
+    cubas_dir = os.path.join(ROOT, CUBAS)
+    if os.path.isdir(cubas_dir):
+        for f in sorted(os.listdir(cubas_dir)):
+            if not f.lower().endswith(MATRIZES):
+                continue
+            nome = slugify(os.path.splitext(f)[0])
+            manifest["cubas/" + nome] = emit(os.path.join(cubas_dir, f), "cubas", nome, cartao_inteiro=True)
+            manifest["cubas/" + nome]["source"] = f"{CUBAS}/{f}"
+
+    # --- 3. Fotografias vindas do Figma ------------------------------------
     figma_map = {
         "raw_1.jpeg": "residencia-encosta",   # hero: residência ao entardecer
         "raw_2.webp": "estar-alvenaria",      # estar com parede de alvenaria seca
