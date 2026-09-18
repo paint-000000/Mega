@@ -8,7 +8,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { brand, nav, img, aplicacoes } from './data.mjs';
-import { arrow, whatsapp, instagram } from './icons.mjs';
+import { arrow, icons, whatsapp, instagram } from './icons.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SITE = join(HERE, '..', 'site');
@@ -97,8 +97,8 @@ export function canais() {
     brand.whatsapp && { rotulo: 'WhatsApp', html: `<a class="link-simple canal" href="${esc(whatsappHref())}" target="_blank" rel="noopener">${whatsapp}<span class="visually-hidden">WhatsApp</span>${brand.whatsappExibicao}</a>` },
     brand.instagram && { rotulo: 'Instagram', html: `<a class="link-simple canal" href="${brand.instagram}" target="_blank" rel="noopener">${instagram}<span class="visually-hidden">Instagram</span>${brand.instagramUsuario}</a>` },
     // Mesmo número do WhatsApp: na lista curta aparece uma vez só (a página de contato mostra os dois campos).
-    brand.telefone && brand.telefone !== brand.whatsappExibicao && { rotulo: 'Telefone', html: `<a class="link-simple" href="tel:${brand.telefoneLink}">${brand.telefone}</a>` },
-    brand.email && { rotulo: 'E-mail', html: `<a class="link-simple" href="mailto:${brand.email}">${brand.email}</a>` },
+    brand.telefone && brand.telefone !== brand.whatsappExibicao && { rotulo: 'Telefone', html: `<a class="link-simple canal" href="tel:${brand.telefoneLink}">${icons.telefone}<span class="visually-hidden">Telefone</span>${brand.telefone}</a>` },
+    brand.email && { rotulo: 'E-mail', html: `<a class="link-simple canal" href="mailto:${brand.email}">${icons.email}<span class="visually-hidden">E-mail</span>${brand.email.replace('@', '<wbr>@')}</a>` },
     brand.endereco && { rotulo: 'Endereço', html: brand.endereco },
     brand.horario && { rotulo: 'Atendimento', html: brand.horario },
   ].filter(Boolean);
@@ -217,6 +217,9 @@ export function page({
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${canonical}">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="geo.region" content="BR-SP">
+<meta name="geo.placename" content="${esc(brand.regiao)}">
 <meta name="theme-color" content="#121110">
 <link rel="icon" href="${base}favicon.svg" type="image/svg+xml">
 

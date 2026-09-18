@@ -16,7 +16,7 @@ import {
   brand, aplicacoes, pedras, cubas, cubasFicha,
   aplicacoesCopy, orcamento, indicadores, img,
 } from './data.mjs';
-import { arrow } from './icons.mjs';
+import { arrow, icons, whatsapp, instagram } from './icons.mjs';
 import { page, plate, lines, btn, esc, crumbs, breadcrumbSchema, canais, pendente, whatsappHref } from './layout.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -29,6 +29,19 @@ const escreve = (rel, html) => {
 };
 
 const plural = (n, um, muitos) => `${n} ${n === 1 ? um : muitos}`;
+
+/* SEO: título com o que se procura + região, e a marca no fim. O Google corta
+   perto de 60–70 caracteres; se a marca não couber, sai ela, não a busca. */
+const titulo = (principal) => {
+  const cheio = `${principal} | ${brand.nome}`;
+  return cheio.length <= 70 ? cheio : principal;
+};
+/** Descrição até 160 caracteres, cortada em palavra inteira. */
+const resumo = (texto) => {
+  if (texto.length <= 160) return texto;
+  const corte = texto.slice(0, 157);
+  return `${corte.slice(0, corte.lastIndexOf(' '))}…`;
+};
 
 /* ===================================================== blocos reutilizáveis */
 
@@ -271,7 +284,7 @@ function home() {
       <div class="section-head">
         <div class="section-head__txt">
           <p class="overline" data-reveal>Acervo</p>
-          <h2 class="h2" id="acv-t" data-reveal style="--i:1">Seis aplicações, ${pedras.length} pedras.</h2>
+          <h2 class="h2" id="acv-t" data-reveal style="--i:1">Seis aplicações, ${pedras.length} pedras${cubas.length ? ` e ${cubas.length} cubas` : ''}.</h2>
         </div>
         <a class="btn btn--ghost" href="acervo.html">Percorrer o acervo${arrow}</a>
       </div>
@@ -283,7 +296,8 @@ function home() {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'Organization',
+        // Negócio local: o Google usa areaServed e o telefone para buscas "perto de mim" / "em SP".
+        '@type': ['Organization', 'HomeAndConstructionBusiness'],
         '@id': `${brand.dominio}/#org`,
         name: brand.nomeCompleto,
         alternateName: brand.nome,
@@ -292,7 +306,10 @@ function home() {
         description: brand.assinatura,
         ...(brand.email ? { email: brand.email } : {}),
         ...(brand.telefone ? { telephone: brand.telefone } : {}),
-        areaServed: 'BR',
+        image: `${brand.dominio}/${img['marca/residencia-encosta'].base}-og.jpg`,
+        areaServed: { '@type': 'State', name: brand.regiao, containedInPlace: { '@type': 'Country', name: 'Brasil' } },
+        ...(brand.instagram ? { sameAs: [brand.instagram] } : {}),
+        knowsAbout: ['Pedra natural', 'Revestimento de pedra', 'Piso de pedra', 'Muro de pedra', 'Cuba de pedra', 'Paralelepípedo'],
       },
       {
         '@type': 'WebSite',
@@ -306,8 +323,9 @@ function home() {
   };
 
   return page({
-    title: `${brand.nome} — Pedra natural para arquitetura`,
-    description: brand.intro,
+    title: titulo(`Pedras Naturais e Cubas de Pedra em ${brand.regiao}`),
+    description: resumo(`Pedras naturais e cubas de pedra em ${brand.regiao}: moledo, lajão, granito, São Tomé, ` +
+      `paralelepípedo e pedras para muro. Orçamento pelo WhatsApp.`),
     path: 'index.html',
     active: '',
     depth: 0,
@@ -338,8 +356,9 @@ function paginaAplicacoes() {
   ${faixaOrcamento(base)}`;
 
   return page({
-    title: `Aplicações — ${brand.nome}`,
-    description: `${aplicacoesCopy.titulo} Revestimentos, pisos, muros e muretas, escadas, caminhos e praças e calçamentos e estradas em pedra natural.`,
+    title: titulo(`Pedra Natural para Revestimento, Piso e Muro em ${brand.regiaoCurta}`),
+    description: resumo(`Pedra natural para revestimentos, pisos, muros e muretas, escadas, caminhos e praças e ` +
+      `calçamentos em ${brand.regiao}. Veja as obras e peça orçamento.`),
     path: 'aplicacoes.html',
     active: 'aplicacoes.html',
     depth: 0,
@@ -422,8 +441,9 @@ function paginaAplicacao(a, idx) {
   ${faixaOrcamento(base, { interesse: `Aplicação: ${a.nome}` })}`;
 
   return page({
-    title: `${a.nome} — Aplicações — ${brand.nome}`,
-    description: `${a.chamada} ${a.linha} ${plural(a.fotos.length, 'obra', 'obras')} em pedra natural.`,
+    title: titulo(`${a.nome} em Pedra Natural em ${brand.regiaoCurta}`),
+    description: resumo(`${a.nome} em pedra natural em ${brand.regiao}: ${a.linha.toLowerCase().replace(/\.$/, '')}. ` +
+      `${plural(a.fotos.length, 'obra', 'obras')} com a pedra usada em cada uma.`),
     path: a.href,
     active: 'aplicacoes.html',
     depth: 1,
@@ -487,7 +507,7 @@ function paginaAcervo() {
   ${faixaOrcamento(base)}`;
 
   return page({
-    title: `Acervo — ${brand.nome}`,
+    title: titulo(`Acervo de Pedras Naturais e Cubas de Pedra em ${brand.regiaoCurta}`),
     description: `${pedras.length} pedras naturais registradas em obra${cubas.length ? ` e ${cubas.length} cubas esculpidas em pedra` : ''}: revestimentos, pisos, muros e muretas, escadas, caminhos e praças, calçamentos e estradas.`,
     path: 'acervo.html',
     active: 'acervo.html',
@@ -607,8 +627,9 @@ function paginaPedra(p, idx) {
   ${faixaOrcamento(base, { interesse: `Pedra de interesse: ${p.nome}` })}`;
 
   return page({
-    title: `${p.nome} — Acervo — ${brand.nome}`,
-    description: `${p.nome} em ${p.aplicacoes.join(', ').toLowerCase()}. ${plural(p.fotos.length, 'obra registrada', 'obras registradas')} no acervo da ${brand.nome}.`,
+    title: titulo(`${p.nome} para ${p.aplicacoes[0]} em ${brand.regiaoCurta}`),
+    description: resumo(`${p.nome} para ${p.aplicacoes.join(', ').toLowerCase()} em ${brand.regiao}. ` +
+      `${p.linhas[0].cor}, ${p.linhas[0].tamanho.toLowerCase()}, vendida por ${p.linhas[0].unidade === 'm²' ? 'm²' : p.linhas[0].unidade.toLowerCase()}. Orçamento pelo WhatsApp.`),
     path: p.href,
     active: 'acervo.html',
     depth: 1,
@@ -670,7 +691,7 @@ function paginaCuba(c, idx) {
       <div class="tag-row mt-lg">
         <a class="tag tag--dot" href="${base}acervo.html?a=cubas">Cubas</a>
       </div>
-      <p class="body mt-lg muted">Peça única, esculpida em ${c.nome}. Medidas a consultar.</p>
+      <p class="body mt-lg muted">Cuba de pedra natural para banheiro e lavabo: peça única, esculpida em ${c.nome}. Medidas a consultar.</p>
       <div class="prod-hero__ctas">
         <a class="btn btn--primary btn--lg" href="${esc(whatsappPeca(`cuba ${c.nome}`))}" target="_blank" rel="noopener">Pedir orçamento${arrow}</a>
         <a class="btn btn--secondary btn--lg" href="${base}acervo.html?a=cubas">Ver todas as cubas${arrow}</a>
@@ -720,8 +741,9 @@ function paginaCuba(c, idx) {
   ${faixaOrcamento(base, { interesse: `Cuba de interesse: ${c.nome}` })}`;
 
   return page({
-    title: `${c.titulo} — Acervo — ${brand.nome}`,
-    description: `${c.titulo}, esculpida em pedra natural. Padrão 48 × 38 × 15 cm; peças de até 90 cm sob consulta.`,
+    title: titulo(`Cuba de Pedra ${c.nome} em ${brand.regiaoCurta}`),
+    description: resumo(`Cuba de pedra ${c.nome} para banheiro e lavabo, peça única. ` +
+      `Padrão 48 × 38 × 15 cm, sob medida até 90 cm. ${brand.regiao}.`),
     path: c.href,
     active: 'acervo.html',
     depth: 1,
@@ -790,8 +812,9 @@ function paginaSobre() {
   ${faixaOrcamento(base)}`;
 
   return page({
-    title: `Sobre — ${brand.nome}`,
-    description: `${brand.assinatura} ${pedras.length} pedras naturais em ${aplicacoes.length} tipologias.`,
+    title: titulo(`Sobre a ${brand.nome} — Pedras Naturais em ${brand.regiaoCurta}`),
+    description: resumo(`${brand.nome}: pedra natural para arquitetura em ${brand.regiao}. ${pedras.length} pedras em ` +
+      `${aplicacoes.length} tipologias${cubas.length ? ` e ${cubas.length} cubas esculpidas em pedra` : ''}.`),
     path: 'sobre.html',
     active: 'sobre.html',
     depth: 0,
@@ -816,10 +839,10 @@ function paginaContato() {
 
           <dl class="ficha ficha--contato mt-2xl">
             ${[
-              ['WhatsApp', brand.whatsapp && `<a class="link-simple" href="${esc(whatsappHref())}" target="_blank" rel="noopener">${brand.whatsappExibicao}</a>`],
-              ['Instagram', brand.instagram && `<a class="link-simple" href="${brand.instagram}" target="_blank" rel="noopener">${brand.instagramUsuario}</a>`],
-              ['Telefone', brand.telefone && `<a class="link-simple" href="tel:${brand.telefoneLink}">${brand.telefone}</a>`],
-              ['E-mail', brand.email && `<a class="link-simple" href="mailto:${brand.email}">${brand.email}</a>`],
+              ['WhatsApp', brand.whatsapp && `<a class="link-simple canal" href="${esc(whatsappHref())}" target="_blank" rel="noopener">${whatsapp}${brand.whatsappExibicao}</a>`],
+              ['Instagram', brand.instagram && `<a class="link-simple canal" href="${brand.instagram}" target="_blank" rel="noopener">${instagram}${brand.instagramUsuario}</a>`],
+              ['Telefone', brand.telefone && `<a class="link-simple canal" href="tel:${brand.telefoneLink}">${icons.telefone}${brand.telefone}</a>`],
+              ['E-mail', brand.email && `<a class="link-simple canal" href="mailto:${brand.email}">${icons.email}${brand.email}</a>`],
             ].map(([dt, dd]) => `<div><dt>${dt}</dt>${dd ? `<dd>${dd}</dd>` : '<dd class="is-open">a definir</dd>'}</div>`).join('')}
           </dl>
         </div>
@@ -836,8 +859,9 @@ function paginaContato() {
   </section>`;
 
   return page({
-    title: `Contato — ${brand.nome}`,
-    description: `${orcamento.titulo.join(' ')} ${orcamento.texto}`,
+    title: titulo(`Contato e Orçamento — Pedras Naturais em ${brand.regiaoCurta}`),
+    description: resumo(`Peça orçamento de pedra natural ou cuba de pedra em ${brand.regiao}: WhatsApp ` +
+      `${brand.whatsappExibicao}, Instagram ${brand.instagramUsuario} e e-mail.`),
     path: 'contato.html',
     active: '',
     depth: 0,

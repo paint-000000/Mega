@@ -32,12 +32,17 @@ export const slug = (s) =>
 export const brand = {
   nome: 'Magah Minerale',
   nomeCompleto: 'Magah Minerale Pedras Naturais',
-  overline: 'PEDRA NATURAL',
+  overline: 'PEDRAS NATURAIS EM SÃO PAULO',
+  /* Região atendida — entra em títulos, descrições e nos dados estruturados
+     (areaServed). O DDD 11 do WhatsApp é de São Paulo. */
+  regiao: 'São Paulo',
+  regiaoCurta: 'SP',
   assinatura: 'Pedra natural para arquitetura.',
   manifesto: 'A pedra não reveste. Ela define o lugar.',
   intro:
-    'Moledos, lajões, granitos, paralelepípedos e pedras para muro: 33 pedras naturais para ' +
-    'revestimentos, pisos, muros e muretas, escadas, caminhos e praças e calçamentos.',
+    'Moledos, lajões, granitos, paralelepípedos, pedras para muro e cubas esculpidas em pedra: ' +
+    '33 pedras naturais para revestimentos, pisos, muros e muretas, escadas, caminhos e praças e ' +
+    'calçamentos, em São Paulo.',
   // WhatsApp só dígitos, com DDI; `whatsappExibicao` é como o número aparece na página.
   whatsapp: '5511930319070',
   whatsappExibicao: '(11) 93031-9070',

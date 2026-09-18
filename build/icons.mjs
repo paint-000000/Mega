@@ -21,6 +21,14 @@ export const icons = {
     '<path d="M8 3V7M16 3V7M3 10.5H21"/>'
   ),
   check: wrap('<path d="M5 12.5L9.5 17L19 7.5"/>'),
+  /* Telefone e e-mail seguem o mesmo desenho (24 px, traço 1.5) dos ícones acima. */
+  telefone: wrap(
+    '<path d="M5 4h3.5l1.5 4.5-2.25 1.5a11 11 0 0 0 6.25 6.25l1.5-2.25L20 15.5V19a1 1 0 0 1-1 1C10.72 20 4 13.28 4 5a1 1 0 0 1 1-1Z"/>'
+  ),
+  email: wrap(
+    '<path d="M19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5Z"/>' +
+    '<path d="M3.5 7L12 13L20.5 7"/>'
+  ),
 };
 
 /** icon/arrow-right, exportado em 16 px — usado em botões e links. */
