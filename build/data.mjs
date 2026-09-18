@@ -262,7 +262,7 @@ const nomeCuba = (arquivo) =>
     .split(/\s+/)
     .map((p, i) => (i && MINUSCULAS.has(p.toLowerCase()) ? p.toLowerCase() : p[0].toUpperCase() + p.slice(1)))
     .join(' ')
-    .replace(/\((\p{L})/gu, (_, l) => `(${l.toUpperCase()})`);
+    .replace(/\((\p{L})/gu, (_, l) => `(${l.toUpperCase()}`);
 
 const porCuba = new Map();
 for (const [key, meta] of Object.entries(img)) {
