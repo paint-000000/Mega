@@ -256,6 +256,13 @@ export const aplicacoes = CATEGORIAS.map((c) => {
  * cubas ganham o filtro "Cubas" e uma página cada.
  */
 export const cubasFicha = {
+  /* A peça é feita sob medida: a escolha da pedra, do tamanho e do formato é
+     de quem compra. Esse é o argumento de venda das cubas, então ele aparece
+     na página de cada cuba e no acervo, sob o filtro Cubas. */
+  chamada: 'Você escolhe a pedra, o tamanho e o formato.',
+  sobMedidaTexto:
+    'Cada cuba é esculpida em uma peça única. Escolha a pedra entre as do acervo, diga a medida que o seu ' +
+    'lavabo pede e o formato que imaginou: analisamos caso a caso, com peças de até 90 cm.',
   padrao: '48 cm comprimento × 38 cm largura × 15 cm altura',
   sobMedida: 'Analisamos caso a caso, peças de até 90 cm',
   unidade: 'Peça',

@@ -1143,3 +1143,16 @@ a:focus-visible > .plate img { transform: scale(1.02); filter: saturate(1) contr
 .faq summary::after { content: '+'; flex: none; color: var(--color-secondary); font-size: 1.25em; line-height: 1; }
 .faq details[open] summary::after { content: '−'; }
 .faq details p { padding-bottom: var(--sp-lg); color: var(--color-text-2); font-size: var(--t-small); max-width: 60ch; }
+
+/* Sob medida — o que a pessoa escolhe na cuba. Fica em destaque porque é a
+   informação que decide a compra, não um detalhe da ficha. */
+.sob-medida {
+  border-left: 2px solid var(--color-secondary);
+  padding: var(--sp-md) 0 var(--sp-md) var(--sp-lg);
+  margin-top: var(--sp-lg);
+  max-width: 60ch;
+}
+.sob-medida__titulo { font-family: var(--font-display); font-size: var(--t-h4); color: var(--color-text); line-height: 1.25; }
+.sob-medida__texto { margin-top: var(--sp-sm); color: var(--color-text-2); font-size: var(--t-small); }
+.sob-medida__acao { margin-top: var(--sp-md); }
+[data-aviso] { margin-bottom: clamp(var(--sp-xl), 4vw, var(--sp-2xl)); }

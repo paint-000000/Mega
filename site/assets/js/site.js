@@ -185,6 +185,8 @@
         const alvo = capas.find((f) => f.dataset.capa === chave) || capas[0];
         capas.forEach((f) => { f.hidden = f !== alvo; });
       });
+      // Avisos presos a um filtro (o "sob medida" das cubas) seguem a escolha.
+      $$('[data-aviso]').forEach((el) => { el.hidden = el.dataset.aviso !== chave; });
       filtros.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.filtro === chave)));
       if (contador) {
         contador.textContent =

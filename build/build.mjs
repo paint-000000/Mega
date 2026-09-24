@@ -220,6 +220,17 @@ function cartaoCuba(c, base, i = 0, nivel = 3) {
   </a>`;
 }
 
+/** Sob medida: o que a pessoa escolhe na cuba. Aparece na página da cuba e no acervo. */
+function blocoSobMedida(peca = null) {
+  const alvo = peca ? `cuba ${peca}` : 'cuba';
+  return `
+      <div class="sob-medida">
+        <p class="sob-medida__titulo">${cubasFicha.chamada}</p>
+        <p class="sob-medida__texto">${cubasFicha.sobMedidaTexto}</p>
+        <p class="sob-medida__acao"><a class="link" href="${esc(whatsappPeca(alvo))}" target="_blank" rel="noopener">Montar a minha cuba no WhatsApp${arrow}</a></p>
+      </div>`;
+}
+
 /** WhatsApp com a peça já escrita na mensagem. */
 const whatsappPeca = (peca) =>
   `https://wa.me/${brand.whatsapp}?text=${encodeURIComponent(
@@ -575,6 +586,7 @@ function paginaAcervo() {
       </div>
 
       <div class="filtros" role="group" aria-label="Filtrar por aplicação">${filtros}</div>
+      ${cubas.length ? `<div data-aviso="cubas" hidden>${blocoSobMedida()}</div>` : ''}
       <div class="acervo-grid">${pedras.map((p, i) => cartaoPedra(p, base, i, 2)).join('')}${cubas.map((c, i) => cartaoCuba(c, base, i, 2)).join('')}</div>
     </div>
   </section>
@@ -770,7 +782,8 @@ function paginaCuba(c, idx) {
       <div class="tag-row mt-lg">
         <a class="tag tag--dot" href="${base}acervo.html?a=cubas">Cubas</a>
       </div>
-      <p class="body mt-lg muted">Cuba de pedra natural para banheiro e lavabo: peça única, esculpida em ${c.nome}. Medidas a consultar.</p>
+      <p class="body mt-lg muted">Cuba de pedra natural para banheiro e lavabo, esculpida em ${c.nome}.
+        ${cubasFicha.chamada}</p>
       <div class="prod-hero__ctas">
         <a class="btn btn--primary btn--lg" href="${esc(whatsappPeca(`cuba ${c.nome}`))}" target="_blank" rel="noopener">Pedir orçamento${arrow}</a>
         <a class="btn btn--secondary btn--lg" href="${base}acervo.html?a=cubas">Ver todas as cubas${arrow}</a>
@@ -788,6 +801,7 @@ function paginaCuba(c, idx) {
   <section class="section section--tight" aria-labelledby="ficha">
     <div class="shell">
       <h2 class="overline" id="ficha" data-reveal>Ficha</h2>
+      ${blocoSobMedida(c.nome)}
       <p class="body max-45 mt-lg">A cuba ${c.nome} é uma cuba de pedra natural para banheiro
         e lavabo, esculpida numa peça única de ${c.nome}: cor, veios e formato mudam de uma cuba para outra.
         O tamanho padrão é ${cubasFicha.padrao}; fora do padrão, analisamos caso a caso peças de até 90 cm.
