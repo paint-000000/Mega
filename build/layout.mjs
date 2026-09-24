@@ -218,6 +218,7 @@ export function page({
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${canonical}">
 <meta name="robots" content="index, follow, max-image-preview:large">
+${brand.googleSiteVerification ? `<meta name="google-site-verification" content="${brand.googleSiteVerification}">` : ''}
 <meta name="geo.region" content="BR-SP">
 <meta name="geo.placename" content="${esc(brand.regiao)}">
 <meta name="theme-color" content="#121110">

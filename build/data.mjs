@@ -57,6 +57,10 @@ export const brand = {
   endereco: null,
   horario: null,
   cnpj: null,
+  /* Verificação do Google Search Console (método "Tag HTML"). Fica em todas as
+     páginas; o Google só exige na inicial, mas manter em todas evita perder a
+     verificação se a inicial mudar de endereço. */
+  googleSiteVerification: 'Lql5gJN7h9PEcvkXw9z4-9TXuxu_mUoBZZSMO5ceY80',
   /* Endereço onde o site está no ar — canonical, sitemap e a pré-visualização
      do link (og:image precisa de URL absoluta que responda). Trocar quando
      houver domínio próprio. */
